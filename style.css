@@ -116,7 +116,9 @@
 /* ========================================================
    ATTENDEES CARD LAYOUT (Display: Table Version)
    ======================================================== */
-
+#tix-attendees{
+   max-width:var(--wp--style--global--wide-size) !important;
+}
 #tix-attendees ul.tix-attendee-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
