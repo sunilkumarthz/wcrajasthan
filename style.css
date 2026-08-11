@@ -1,35 +1,51 @@
+:root {
+	--indigo: #0D2343;
+	--terracotta: #C33A19;
+	--marigold: #E39D1C;
+	--cream: #FBEEDD;
+	--white: #FFFFFF;
+	--charcoal: #2C2C2A;
+	--indigo-08: rgba(13,35,67,.08);
+	--indigo-14: rgba(13,35,67,.14);
+	--maxw: 1140px;
+	--font-display: "Fraunces", Georgia, serif;
+	--font-body: "Inter", system-ui, -apple-system, sans-serif;
+	--font-deva: "Yatra One", serif;
+	--r: 14px;
+}
+
 /* ==========================================================================
    WordCamp Rajasthan — Tickets Block (Camptix) Styling
-   Palette inspired by rajasthan.wordcamp.org — Pink City rani-pink/maroon,
-   heritage gold accents, warm off-white surfaces.
+   Palette drawn from the homepage theme for a cohesive experience.
    ========================================================================== */
 
 .tix-js {
-	--wcraj-maroon: #7a1332;
-	--wcraj-pink: #b91c4c;
-	--wcraj-pink-dark: #8f1339;
-	--wcraj-gold: #c9982f;
-	--wcraj-gold-light: #f4e6c8;
-	--wcraj-cream: #fdf8f1;
-	--wcraj-ink: #2b1a1f;
-	--wcraj-muted: #7a6a6d;
-	--wcraj-border: #ecd9c9;
-	--wcraj-radius: 14px;
-
-	/*
-	 * Typography inherits the block theme's own font tokens first
-	 * (set in theme.json / the Site Editor), so this block always
-	 * matches whatever body/heading fonts WCRAJ is using — with a
-	 * neutral system fallback if those tokens aren't present.
-	 */
-	--wcraj-font-body: var(--wp--preset--font-family--body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-	--wcraj-font-heading: var(--wp--preset--font-family--heading, var(--wcraj-font-body));
+	--wcraj-indigo: var(--indigo);
+	--wcraj-terracotta: var(--terracotta);
+	--wcraj-pink: var(--terracotta);
+	--wcraj-pink-dark: #962a14;
+	--wcraj-marigold: var(--marigold);
+	--wcraj-gold: var(--marigold);
+	--wcraj-gold-light: rgba(227,157,28,0.14);
+	--wcraj-cream: var(--cream);
+	--wcraj-white: var(--white);
+	--wcraj-charcoal: var(--charcoal);
+	--wcraj-ink: var(--charcoal);
+	--wcraj-muted: rgba(44,44,42,.60);
+	--wcraj-indigo-08: var(--indigo-08);
+	--wcraj-indigo-14: var(--indigo-14);
+	--wcraj-border: var(--indigo-08);
+	--wcraj-radius: var(--r);
+	--wcraj-font-body: var(--font-body, var(--wp--preset--font-family--body, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif));
+	--wcraj-font-heading: var(--font-display, var(--wp--preset--font-family--heading, Georgia, serif));
 
 	font-family: var(--wcraj-font-body);
 	font-size: var(--wp--preset--font-size--medium, 16px);
-	line-height: 1.6;
-	color: var(--wcraj-ink);
-	max-width: 100%;
+	line-height: 1.7;
+	color: var(--wcraj-charcoal);
+	max-width: var(--maxw);
+	margin: 0 auto;
+	padding: 0 24px;
 	overflow-x: hidden;
 }
 
@@ -40,14 +56,19 @@
  * as part of the same page, not a bolted-on plugin widget.
  */
 .tix-js .tix-eyebrow {
-	display: block;
+	display: inline-flex;
+	align-items: center;
 	font-family: var(--wcraj-font-body);
-	font-size: 0.72rem;
+	font-size: 0.78rem;
 	font-weight: 700;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: var(--wcraj-gold);
-	margin-bottom: 6px;
+	color: var(--wcraj-terracotta);
+	background: rgba(195,58,25,.08);
+	border: 1px solid rgba(195,58,25,.18);
+	padding: 7px 14px;
+	border-radius: 999px;
+	margin-bottom: 10px;
 }
 
 /* ---------- Table shell ---------- */
@@ -108,54 +129,56 @@
 
 /* ---------- Ticket rows as "cards" ---------- */
 .tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-	background: var(--wcraj-cream);
+	background: var(--wcraj-white);
 	border: 1px solid var(--wcraj-border);
 	border-radius: var(--wcraj-radius);
-		box-shadow: 0 4px 18px rgba(122, 19, 50, 0.08);
-		transition: box-shadow 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
-		overflow: hidden;
-	}
+	box-shadow: 0 18px 42px rgba(13,35,67,.06);
+	transition: box-shadow 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
+	overflow: hidden;
+}
 
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
-		border-color: rgba(201, 152, 47, 0.9);
-		box-shadow: 0 10px 24px rgba(122, 19, 50, 0.14);
-		transform: translateY(-2px);
-	}
+.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
+	border-color: rgba(195,58,25,.9);
+	box-shadow: 0 20px 50px rgba(13,35,67,.12);
+	transform: translateY(-2px);
+}
 
-	.tix-js .tix_tickets_table tbody tr td,
-	.tix-js .tix_tickets_table tbody tr th {
-		padding: 22px 18px;
-		vertical-align: middle;
-		border: none;
-	}
+.tix-js .tix_tickets_table tbody tr td,
+.tix-js .tix_tickets_table tbody tr th {
+	padding: 22px 18px;
+	vertical-align: middle;
+	border: none;
+}
 
-	.tix-js .tix-column-price,
-	.tix-js .tix-column-remaining,
-	.tix-js .tix-column-quantity {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-end;
-		gap: 6px;
-		min-width: 120px;
-	}
+.tix-js .tix-column-price,
+.tix-js .tix-column-remaining,
+.tix-js .tix-column-quantity {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	gap: 8px;
+	min-width: 120px;
+}
 
-	.tix-js .tix-column-price {
-		text-align: right;
-	}
+.tix-js .tix-column-price {
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: var(--wcraj-terracotta);
+	text-align: right;
+}
 
-	.tix-js .tix-column-remaining {
-		min-width: 100px;
-	}
+.tix-js .tix-column-remaining {
+	color: var(--wcraj-indigo-14);
+	font-size: 0.92rem;
+}
 
-	.tix-js .tix-column-quantity {
-		min-width: 120px;
-	}
+.tix-js .tix-column-quantity {
+	min-width: 120px;
+}
 
-	.tix-js .tix-column-quantity select {
-		min-width: 110px;
-	border-top-left-radius: var(--wcraj-radius);
-	border-bottom-left-radius: var(--wcraj-radius);
+.tix-js .tix-column-quantity select {
+	min-width: 110px;
 }
 
 .tix-js .tix_tickets_table tbody tr td:last-child,
@@ -225,17 +248,17 @@
 .tix-js .tix-column-quantity select {
 	appearance: none;
 	-webkit-appearance: none;
-	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a1332'/%3E%3C/svg%3E") no-repeat right 14px center;
-		border: 1.5px solid rgba(236, 217, 201, 0.95);
-		border-radius: 12px;
-		padding: 10px 38px 10px 14px;
-		font-size: 0.95rem;
-		font-weight: 600;
-		color: var(--wcraj-ink);
-		cursor: pointer;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		min-width: 120px;
-	}
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230D2343'/%3E%3C/svg%3E") no-repeat right 16px center;
+	border: 1.5px solid var(--wcraj-indigo-08);
+	border-radius: 12px;
+	padding: 10px 40px 10px 14px;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--wcraj-charcoal);
+	cursor: pointer;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	min-width: 120px;
+}
 .tix-js .tix-row-coupon td {
 	padding: 4px 20px 18px;
 	text-align: right !important;
@@ -295,24 +318,18 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	background: #fff;
-	padding: 20px 18px;
-	border: 1px solid rgba(236, 217, 201, 0.8);
-	border-radius: 16px;
-	box-shadow: 0 6px 20px rgba(122, 19, 50, 0.04);
-}
+		background: var(--wcraj-white);
+		padding: 20px 18px;
+		border: 1px solid var(--wcraj-indigo-08);
+		border-radius: 16px;
+		box-shadow: 0 18px 40px rgba(13,35,67,.06);
+	}
 
 	.tix-js form .tix-field .tix-field-description {
 		font-size: 0.92rem;
-		color: var(--wcraj-muted);
-		line-height: 1.6;
+		color: var(--wcraj-indigo-14);
+		line-height: 1.7;
 	}
-	color: var(--wcraj-muted);
-}
-
-.tix-js form input[type="text"],
-.tix-js form input[type="email"],
-.tix-js form input[type="tel"],
 .tix-js form input[type="url"],
 .tix-js form select,
 .tix-js form textarea {
@@ -385,13 +402,13 @@
 
 	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
 		display: block;
-		padding: 18px 16px;
-		margin-bottom: 20px;
+		padding: 18px 18px;
+		margin-bottom: 22px;
 	}
 
 	.tix-js .tix_tickets_table tbody tr td,
 	.tix-js .tix_tickets_table tbody tr th {
-		padding: 8px 0;
+		padding: 10px 0;
 	}
 
 	.tix-js form {
@@ -399,7 +416,7 @@
 	}
 
 	.tix-js form .tix-field {
-		padding: 16px 14px;
+		padding: 18px 16px;
 	}
 }
 
