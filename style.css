@@ -1,6 +1,6 @@
 /* ========================================================
    WORDCAMP RAJASTHAN TICKET & ATTENDEE UI/UX ENHANCEMENTS
-   Final Polished Version - Premium Grid & SVG Icons
+   Final Polished Version - Premium Grid & Native Font Icons
    ======================================================== */
 
 /* --- 1. General Table Styling (Tickets, Order Summary, Attendee Form) --- */
@@ -207,7 +207,9 @@
 #tix-attendees a.tix-attendee-url {
     grid-row: 2 / 3;
     align-self: start;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 34px;
     height: 34px;
     background-color: #ffffff;
@@ -215,12 +217,9 @@
     border-radius: 50%;
     color: transparent !important; 
     text-decoration: none;
+    position: relative;
     transition: all 0.3s ease;
     margin: 0;
-    
-    /* Setup for SVG backgrounds */
-    background-repeat: no-repeat;
-    background-position: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
@@ -231,30 +230,50 @@
     grid-column: 3 / 4;
 }
 
-/* --- Perfect Color SVG Icons --- */
-
-/* 𝕏 Icon (Dark Blue) */
-#tix-attendees a.tix-attendee-twitter {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230d2345'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
-    background-size: 14px;
+/* --- Native Font Icons (Bypasses WP Customizer Security) --- */
+#tix-attendees a.tix-attendee-twitter::before,
+#tix-attendees a.tix-attendee-url::before {
+    position: absolute;
+    transition: color 0.3s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* 𝕏 Icon (Dark Blue) - Pure Unicode */
+#tix-attendees a.tix-attendee-twitter::before {
+    content: "𝕏";
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #0d2345; /* WC Rajasthan Blue */
+}
+
+/* Website Globe Icon (Terracotta) - Native WP Dashicons */
+#tix-attendees a.tix-attendee-url::before {
+    content: "\f319"; 
+    font-family: "dashicons";
+    font-size: 1.15rem;
+    color: #c33a19; /* WC Rajasthan Terracotta */
+}
+
+/* --- Hover States (Invert to solid backgrounds) --- */
 #tix-attendees a.tix-attendee-twitter:hover {
     background-color: #0d2345;
     border-color: #0d2345;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
+}
+#tix-attendees a.tix-attendee-twitter:hover::before {
+    color: #ffffff;
 }
 
-/* Website Globe Icon (Terracotta) */
-#tix-attendees a.tix-attendee-url {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c33a19' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='2' y1='12' x2='22' y2='12'%3E%3C/line%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'%3E%3C/path%3E%3C/svg%3E");
-    background-size: 16px; 
-}
 #tix-attendees a.tix-attendee-url:hover {
     background-color: #c33a19;
     border-color: #c33a19;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='2' y1='12' x2='22' y2='12'%3E%3C/line%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'%3E%3C/path%3E%3C/svg%3E");
 }
-
+#tix-attendees a.tix-attendee-url:hover::before {
+    color: #ffffff;
+}
 
 /* --- Responsive Layout Breakpoints --- */
 
