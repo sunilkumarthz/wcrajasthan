@@ -261,7 +261,73 @@
     letter-spacing: 0.05em;
 }
 
-/* --- 8. Responsive Adjustments --- */
+/* --- 8. Attendee Social Links & Icon UI Fix --- */
+
+/* Hide the duplicate plain text fields cluttering the UI */
+#tix-attendees li > div.tix-website,
+#tix-attendees li > div.tix-x-handle {
+    display: none !important;
+}
+
+/* Transform the anchor tags into circular button containers */
+#tix-attendees a.tix-attendee-twitter,
+#tix-attendees a.tix-attendee-url {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin: 1rem 0.35rem 0;
+    background-color: #f8f9fa;
+    border: 1px solid #eaeaea;
+    border-radius: 50%;
+    
+    /* This completely hides the original generated text */
+    color: transparent !important; 
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Hover state for the icon buttons */
+#tix-attendees a.tix-attendee-twitter:hover,
+#tix-attendees a.tix-attendee-url:hover {
+    background-color: #c33a19; /* WC Rajasthan Terracotta */
+    border-color: #c33a19;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(195, 58, 25, 0.25);
+}
+
+/* Inject the Icons using pseudo-elements */
+#tix-attendees a.tix-attendee-twitter::before,
+#tix-attendees a.tix-attendee-url::before {
+    position: absolute;
+    color: #0d2345; /* WC Rajasthan Dark Blue */
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+/* Make icons white on hover */
+#tix-attendees a.tix-attendee-twitter:hover::before,
+#tix-attendees a.tix-attendee-url:hover::before {
+    color: #ffffff;
+}
+
+/* X (Twitter) Icon */
+#tix-attendees a.tix-attendee-twitter::before {
+    content: "𝕏";
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+/* Website Icon */
+#tix-attendees a.tix-attendee-url::before {
+    content: "🌐";
+    filter: grayscale(100%) contrast(200%);
+}
+
+/* --- 9. Responsive Adjustments --- */
 
 /* Tablet (Under 992px) */
 @media (max-width: 992px) {
