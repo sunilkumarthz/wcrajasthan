@@ -1,515 +1,480 @@
+/* Root Variables */
 :root {
-  --indigo: #0D2343;
-  --terracotta: #C33A19;
-  --marigold: #E39D1C;
-  --cream: #FBEEDD;
-  --white: #FFFFFF;
-  --charcoal: #2C2C2A;
-  --muted: #6D6D6D;
-  --border: rgba(13, 35, 67, 0.12);
-  --surface: #F6F4EE;
-  --radius: 24px;
-  --shadow: 0 24px 56px rgba(13, 35, 67, 0.08);
-  --font-base: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-primary: #0d2345;
+  --color-secondary: #c33a19;
+  --color-accent: #f5e6d3;
+  --color-light-bg: #f9f7f4;
+  --color-border: #e5ddd4;
+  --color-text: #333;
+  --color-text-light: #666;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition: all 0.3s ease;
 }
 
-html {
-  box-sizing: border-box;
-  font-family: var(--font-base);
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
+/* Base Styles */
 body {
-  margin: 0;
-  color: var(--charcoal);
-  background: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--color-text);
+  line-height: 1.6;
+  background-color: #fff;
 }
 
-.tix-js {
-  font-family: var(--font-base);
-  color: var(--charcoal);
-  line-height: 1.7;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 24px 44px;
-}
-
-.tix-js a {
-  color: var(--terracotta);
-  text-decoration: none;
-}
-
-.tix-js a:hover,
-.tix-js a:focus-visible {
-  color: #962A14;
-}
-
-.tix-js h1,
-.tix-js h2,
-.tix-js h3,
-.tix-js h4,
-.tix-js h5,
-.tix-js h6 {
-  font-family: var(--font-base);
-  color: var(--indigo);
-  margin: 0 0 20px;
-}
-
-.tix-js p {
-  margin: 0 0 1rem;
-  color: var(--muted);
-}
-
-.tix-js button,
-.tix-js input,
-.tix-js select {
-  font: inherit;
-}
-
-/* Ticket list cards */
-.tix-js .tix_tickets_table {
+/* Tables */
+.tix_tickets_table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 0;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background: white;
 }
 
-.tix-js .tix_tickets_table tbody {
-  display: grid;
-  gap: 22px;
+.tix_tickets_table thead {
+  background-color: var(--color-primary);
+  color: white;
 }
 
-.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-  display: block;
-  padding: 28px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
-  transform: translateY(-2px);
-  border-color: rgba(195, 58, 25, 0.2);
-  box-shadow: 0 28px 70px rgba(13, 35, 67, 0.1);
-}
-
-.tix-js .tix_tickets_table tbody tr td,
-.tix-js .tix_tickets_table tbody tr th {
-  display: block;
-  width: 100%;
-  padding: 0;
+.tix_tickets_table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
   border: none;
 }
 
-.tix-js .tix-column-description {
-  margin-bottom: 18px;
+.tix_tickets_table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.tix-js .tix-ticket-title {
+.tix_tickets_table tbody tr:hover {
+  background-color: var(--color-light-bg);
+  transition: var(--transition);
+}
+
+.tix_tickets_table tbody tr:last-child td {
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+/* Ticket Cards */
+.tix-ticket-title {
   display: block;
-  font-size: clamp(1.18rem, 1.05rem + 0.55vw, 1.35rem);
-  font-weight: 700;
-  color: var(--indigo);
-  margin-bottom: 10px;
-}
-
-.tix-js .tix-ticket-excerpt {
-  display: block;
-  color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.75;
-  max-width: 54ch;
-}
-
-.tix-js .tix-column-price,
-.tix-js .tix-column-remaining,
-.tix-js .tix-column-quantity {
-  margin-top: 18px;
-}
-
-.tix-js .tix-column-price {
-  font-weight: 700;
-  font-size: 1.12rem;
-  color: var(--terracotta);
-}
-
-.tix-js .tix-column-remaining {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.tix-js .tix-column-remaining::after {
-  content: " left";
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.tix-js .tix-column-quantity {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.75rem;
-}
-
-.tix-js .tix-column-quantity select {
-  width: min(100%, 220px);
-  padding: 14px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230D2343'/%3E%3C/svg%3E") no-repeat right 16px center;
-  background-size: 10px 6px;
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 1rem;
-  color: var(--charcoal);
-  cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tix-js .tix-column-quantity select:focus {
-  outline: none;
-  border-color: var(--terracotta);
-  box-shadow: 0 0 0 4px rgba(195, 58, 25, 0.12);
-}
-
-.tix-js .tix-row-coupon td {
-  padding: 18px 24px 22px;
-  text-align: right !important;
-  font-size: 0.95rem;
-  background: transparent;
-}
-
-.tix-js #tix-coupon-link {
-  color: var(--indigo);
+  font-size: 1.1rem;
   font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
 }
 
-.tix-js #tix-coupon-link:hover,
-.tix-js #tix-coupon-link:focus-visible {
-  color: var(--terracotta);
+.tix-ticket-excerpt {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-top: var(--spacing-xs);
 }
 
-.tix-js #tix-coupon-container {
-  margin-top: 14px;
+/* Price and Quantity */
+.tix-column-price {
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+}
+
+.tix-column-remaining {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+select[id^="tix-qty"] {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  background-color: white;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+select[id^="tix-qty"]:hover,
+select[id^="tix-qty"]:focus {
+  border-color: var(--color-secondary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(195, 58, 25, 0.1);
+}
+
+/* Forms */
+.tix-attendee-form {
+  margin: var(--spacing-lg) 0;
+}
+
+.tix-attendee-form tr th {
+  background-color: var(--color-light-bg);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.tix-attendee-form td {
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+}
+
+.tix-left {
+  width: 35%;
+  background-color: #fafaf8;
+}
+
+.tix-right {
+  width: 65%;
+}
+
+.tix-required label {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.tix-required-star {
+  color: var(--color-secondary);
+  margin-left: 0.25rem;
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(195, 58, 25, 0.1);
+}
+
+/* Radio Buttons & Checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: var(--spacing-xs);
+  cursor: pointer;
+  accent-color: var(--color-secondary);
+}
+
+.tix-screen-reader-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tix-screen-reader-fieldset label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  cursor: pointer;
+}
+
+/* Buttons */
+input[type="submit"],
+button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #a32d15;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(195, 58, 25, 0.3);
+}
+
+input[type="submit"]:active,
+button:active {
+  transform: translateY(0);
+}
+
+.tix-checkout-button {
+  width: 100%;
+  padding: var(--spacing-md);
+  font-size: 1.1rem;
+}
+
+/* Payment Methods */
+.tix-payment-method {
+  margin: var(--spacing-lg) 0;
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.tix-payment-tab {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--spacing-md);
+  background-color: var(--color-light-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: var(--transition);
+}
+
+.tix-payment-tab:hover {
+  border-color: var(--color-secondary);
+  background-color: rgba(195, 58, 25, 0.05);
+}
+
+.tix-tab-selected {
+  background-color: var(--color-secondary);
+  color: white;
+  border-color: var(--color-secondary);
+}
+
+.tix-hidden {
   display: none;
 }
 
-.tix-js #tix-coupon-container input[type="text"] {
-  width: min(100%, 320px);
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
+.tix-alternate-payment-option {
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
 }
 
-.tix-js #tix-coupon-container input[type="submit"] {
-  margin-top: 12px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  background: var(--terracotta);
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-}
-
-.tix-js form > p {
-  margin: 0;
-  padding: 18px 0 0;
-  text-align: right;
-}
-
-.tix-js form > p input[type="submit"] {
-  padding: 14px 26px;
-  border-radius: 999px;
-  background: var(--terracotta);
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.tix-js form > p input[type="submit"]:hover {
-  transform: translateY(-1px);
-  background: #a82f13;
-}
-
-/* Order summary and attendee tables */
-.tix-js .tix-order-summary,
-.tix-js .tix-ticket-form,
-.tix-js .tix-attendee-form {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 0 24px;
-}
-
-.tix-js .tix-order-summary th,
-.tix-js .tix-order-summary td,
-.tix-js .tix-ticket-form th,
-.tix-js .tix-ticket-form td,
-.tix-js .tix-attendee-form th,
-.tix-js .tix-attendee-form td {
-  padding: 16px 18px;
-  vertical-align: top;
-}
-
-.tix-js .tix-order-summary thead th,
-.tix-js .tix-ticket-form thead th {
-  text-align: left;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--indigo);
-  background: var(--surface);
-}
-
-.tix-js .tix-order-summary tbody tr,
-.tix-js .tix-ticket-form tbody tr {
-  border-bottom: 1px solid var(--border);
-}
-
-.tix-js .tix-order-summary .tix-row-total td {
-  border-top: 2px solid var(--border);
+/* Coupon */
+#tix-coupon-link {
+  color: var(--color-secondary);
+  text-decoration: none;
   font-weight: 600;
-}
-
-.tix-js .tix-order-summary .tix-row-total strong,
-.tix-js .tix-ticket-form strong {
-  color: var(--indigo);
-}
-
-.tix-js .tix-order-summary .tix-column-per-ticket,
-.tix-js .tix-order-summary .tix-column-quantity,
-.tix-js .tix-order-summary .tix-column-price,
-.tix-js .tix-ticket-form td {
-  text-align: right;
-}
-
-.tix-js .tix-order-summary .tix-column-description strong {
-  color: var(--indigo);
-  display: block;
-  margin-bottom: 4px;
-}
-
-/* Attendee form styling */
-.tix-js .tix-attendee-form tbody {
-  display: grid;
-  gap: 18px;
-}
-
-.tix-js .tix-attendee-form tr {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr);
-  gap: 18px;
-  align-items: start;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 20px;
-}
-
-.tix-js .tix-attendee-form tr th[colspan="2"],
-.tix-js .tix-attendee-form tr td[colspan="2"] {
-  grid-column: 1 / -1;
-  padding: 0;
-  font-weight: 700;
-}
-
-.tix-js .tix-attendee-form th:not([colspan]) {
-  font-weight: 700;
-  color: var(--indigo);
-}
-
-.tix-js .tix-attendee-form td,
-.tix-js .tix-attendee-form th {
-  margin: 0;
-}
-
-.tix-js .tix-attendee-form input[type="text"],
-.tix-js .tix-attendee-form input[type="email"],
-.tix-js .tix-attendee-form input[type="url"],
-.tix-js .tix-attendee-form input[type="tel"],
-.tix-js .tix-attendee-form select {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
-  color: var(--charcoal);
-}
-
-.tix-js .tix-attendee-form input:focus,
-.tix-js .tix-attendee-form select:focus {
-  outline: none;
-  border-color: var(--terracotta);
-  box-shadow: 0 0 0 4px rgba(195, 58, 25, 0.12);
-}
-
-.tix-js .tix-attendee-form small.message {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted);
-}
-
-.tix-js .tix-attendee-form fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-.tix-js .tix-attendee-form fieldset label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.96rem;
-  color: var(--charcoal);
-}
-
-.tix-js .tix-attendee-form input[type="radio"],
-.tix-js .tix-attendee-form input[type="checkbox"] {
-  accent-color: var(--terracotta);
-}
-
-/* Payment method controls */
-.tix-js .tix-payment-method {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.tix-js .tix-payment-tab {
-  flex: 1 1 auto;
-  min-width: 160px;
-  padding: 14px 18px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--white);
-  color: var(--charcoal);
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: var(--transition);
 }
 
-.tix-js .tix-payment-tab:hover,
-.tix-js .tix-payment-tab:focus-visible {
-  border-color: rgba(13, 35, 67, 0.18);
+#tix-coupon-link:hover {
+  text-decoration: underline;
 }
 
-.tix-js .tix-tab-selected {
-  background: var(--terracotta);
-  color: var(--white);
-  border-color: transparent;
-}
-
-.tix-js .tix-payment-method-container {
-  margin-bottom: 22px;
-}
-
-.tix-js .tix-submit {
+#tix-coupon-container {
+  margin-top: var(--spacing-sm);
   display: flex;
-  justify-content: flex-end;
-  gap: 14px;
-  align-items: center;
-  margin-top: 14px;
+  gap: var(--spacing-sm);
 }
 
-.tix-js .tix-checkout-button,
-.tix-js .tix-submit input[type="submit"] {
-  padding: 14px 24px;
-  border-radius: 999px;
+#tix-coupon-input {
+  flex: 1;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* Order Summary */
+.tix-order-summary {
+  background-color: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tix-row-total {
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: rgba(195, 58, 25, 0.08);
+}
+
+.tix-row-total td {
+  padding: var(--spacing-md);
   border: none;
-  background: var(--terracotta);
-  color: var(--white);
-  cursor: pointer;
-  font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.tix-js .tix-checkout-button:hover,
-.tix-js .tix-submit input[type="submit"]:hover {
-  transform: translateY(-1px);
-  background: #a82f13;
-}
-
-/* Attendee grid */
-#tix-attendees .tix-attendee-list {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* Attendee List */
+.tix-attendee-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
 }
 
-#tix-attendees .tix-attendee-list li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 22px;
+.tix-attendee-list li {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background-color: var(--color-light-bg);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
 }
 
-#tix-attendees .tix-avatar img {
-  width: 72px;
-  height: 72px;
+.tix-attendee-list li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.tix-attendee-list img {
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
-  object-fit: cover;
+  margin-bottom: var(--spacing-sm);
 }
 
-#tix-attendees .tix-name {
-  font-size: 1rem;
+.tix-attendee-name {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.tix-first {
+  display: block;
+}
+
+.tix-last {
+  display: block;
+  color: var(--color-secondary);
+}
+
+/* Ticket Form */
+.tix-ticket-form {
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+.tix-ticket-form thead {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.tix-ticket-form th,
+.tix-ticket-form td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tix-ticket-form a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.tix-ticket-form a:hover {
+  text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h6 {
+  color: var(--color-primary);
+}
+
+h2 {
+  margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--indigo);
 }
 
-/* Responsive stack */
-@media (max-width: 780px) {
-  .tix-js {
-    padding: 0 18px 30px;
+/* Paragraphs */
+p {
+  margin: var(--spacing-md) 0;
+  color: var(--color-text);
+}
+
+p em {
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+p a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tix_tickets_table,
+  .tix-attendee-form,
+  .tix-order-summary {
+    font-size: 0.9rem;
   }
 
-  .tix-js .tix-attendee-form tr {
-    grid-template-columns: 1fr;
+  .tix_tickets_table th,
+  .tix_tickets_table td,
+  .tix-attendee-form th,
+  .tix-attendee-form td {
+    padding: var(--spacing-sm);
   }
 
-  .tix-js .tix-payment-method {
+  .tix-payment-method {
     flex-direction: column;
   }
 
-  .tix-js .tix-submit {
-    justify-content: stretch;
+  .tix-payment-tab {
+    min-width: auto;
   }
 
-  .tix-js .tix-checkout-button,
-  .tix-js .tix-submit input[type="submit"] {
+  .tix-left,
+  .tix-right {
+    width: 100%;
+    display: block;
+  }
+
+  .tix-attendee-form tr {
+    display: block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .tix-attendee-form th,
+  .tix-attendee-form td {
+    display: block;
+    width: 100%;
+  }
+
+  .tix-attendee-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  input[type="submit"],
+  button {
     width: 100%;
   }
 }
 
-@media (max-width: 540px) {
-  .tix-js {
-    padding: 0 14px 24px;
+@media (max-width: 480px) {
+  :root {
+    --spacing-lg: 1.5rem;
+    --spacing-md: 1rem;
   }
 
-  .tix-js .tix-column-quantity {
-    flex-direction: column;
-    align-items: stretch;
+  h2 {
+    font-size: 1.4rem;
   }
 
-  .tix-js .tix-ticket-title {
-    font-size: 1.15rem;
-  }
-
-  .tix-js .tix-column-quantity select,
-  .tix-js .tix-attendee-form input[type="text"],
-  .tix-js .tix-attendee-form input[type="email"],
-  .tix-js .tix-attendee-form input[type="url"],
-  .tix-js .tix-attendee-form input[type="tel"] {
-    width: 100%;
+  .tix-checkout-button {
+    font-size: 1rem;
   }
 }
