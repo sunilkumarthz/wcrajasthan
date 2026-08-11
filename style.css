@@ -88,15 +88,12 @@
 
 	.tix-js .tix_tickets_table tbody {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(320px, 1fr));
+		grid-template-columns: 1fr;
 		gap: 20px;
 	}
 
 	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		display: grid;
-		grid-template-columns: minmax(220px, 1.7fr) minmax(120px, 1fr) minmax(120px, 1fr) minmax(140px, 1fr);
-		align-items: center;
-		gap: 16px;
+		display: block;
 		margin: 0;
 	}
 
