@@ -1,6 +1,6 @@
 /* ========================================================
    WORDCAMP RAJASTHAN TICKET & ATTENDEE UI/UX ENHANCEMENTS
-   Final Polished Version - Premium Grid & Native Font Icons
+   Final Complete Version (Includes display: table layout)
    ======================================================== */
 
 /* --- 1. General Table Styling (Tickets, Order Summary, Attendee Form) --- */
@@ -114,7 +114,7 @@
 
 
 /* ========================================================
-   ATTENDEES CARD LAYOUT (Premium Horizontal Design)
+   ATTENDEES CARD LAYOUT (Display: Table Version)
    ======================================================== */
 
 #tix-attendees ul.tix-attendee-list {
@@ -126,22 +126,19 @@
     margin: 0;
 }
 
+/* Using display: table on the list item */
 #tix-attendees ul.tix-attendee-list li {
-    /* Premium background gradient (White to extremely soft cream/terracotta tint) */
+    display: table;
+    width: 100%;
     background: linear-gradient(145deg, #ffffff 0%, #fcf9f5 100%);
     padding: 1.5rem;
     border-radius: 12px;
-    border: 1px solid #f0e6d3; /* Soft, warm border */
+    border: 1px solid #f0e6d3;
     box-shadow: 0 4px 15px rgba(13, 35, 69, 0.04);
+    box-sizing: border-box;
+    position: relative; /* Crucial for absolute positioning of icons */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Strict CSS Grid to perfectly align left avatar and right content */
-    display: grid;
-    grid-template-columns: 88px 38px 38px 1fr;
-    grid-template-rows: max-content max-content;
-    column-gap: 12px;
-    row-gap: 8px;
-    align-items: center;
+    min-height: 136px; /* 88px image + 48px vertical padding */
 }
 
 #tix-attendees ul.tix-attendee-list li:hover {
@@ -149,31 +146,25 @@
     box-shadow: 0 12px 24px rgba(13, 35, 69, 0.08);
 }
 
-/* --- Avatar (Spans Left Side) --- */
+/* Avatar acts as the left table cell */
 #tix-attendees ul.tix-attendee-list img.avatar {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
+    display: table-cell;
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
     background: #ffffff;
     border: 3px solid #ffffff;
-    box-shadow: 0 0 0 2px #c33a1938; /* Terracotta outer ring */
-    width: 88px;
-    height: 88px;
+    box-shadow: 0 0 0 2px #c33a1938;
     object-fit: cover;
     margin: 0;
 }
 
-/* --- Name (Top Right, Single Line) --- */
+/* Name acts as the right table cell */
 #tix-attendees .tix-attendee-name {
-    grid-column: 2 / 5;
-    grid-row: 1 / 2;
-    align-self: end;
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    flex-wrap: nowrap; /* Forces single line */
-    gap: 6px;
-    padding-top: 8px;
+    display: table-cell;
+    vertical-align: top;
+    padding-left: 16px;
+    padding-top: 4px;
 }
 
 #tix-attendees .tix-attendee-name .tix-first {
@@ -181,7 +172,7 @@
     font-weight: 700;
     font-size: 1.3rem;
     color: #0d2345;
-    white-space: nowrap;
+    margin-right: 6px;
 }
 
 #tix-attendees .tix-attendee-name .tix-last {
@@ -191,9 +182,6 @@
     color: #c33a19;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Fades out long last names instead of breaking line */
 }
 
 /* Hide plain text fields */
@@ -202,11 +190,11 @@
     display: none !important;
 }
 
-/* --- Social Icons Base (Bottom Right) --- */
+/* Absolute position for Social Icons to stack them under the name */
 #tix-attendees a.tix-attendee-twitter,
 #tix-attendees a.tix-attendee-url {
-    grid-row: 2 / 3;
-    align-self: start;
+    position: absolute;
+    bottom: 1.5rem; /* Aligns with bottom padding */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -217,20 +205,22 @@
     border-radius: 50%;
     color: transparent !important; 
     text-decoration: none;
-    position: relative;
     transition: all 0.3s ease;
-    margin: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
+/* Precise horizontal placement next to the avatar */
 #tix-attendees a.tix-attendee-twitter {
-    grid-column: 2 / 3;
-}
-#tix-attendees a.tix-attendee-url {
-    grid-column: 3 / 4;
+    left: 128px; /* 1.5rem padding (24px) + 88px avatar + 16px spacing */
 }
 
-/* --- Native Font Icons (Bypasses WP Customizer Security) --- */
+#tix-attendees a.tix-attendee-url {
+    left: 170px; /* Twitter left pos + 34px icon width + 8px gap */
+}
+
+
+/* --- 6. Native Font Icons for Socials --- */
+
 #tix-attendees a.tix-attendee-twitter::before,
 #tix-attendees a.tix-attendee-url::before {
     position: absolute;
@@ -247,7 +237,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 1.05rem;
-    color: #0d2345; /* WC Rajasthan Blue */
+    color: #0d2345;
 }
 
 /* Website Globe Icon (Terracotta) - Native WP Dashicons */
@@ -255,10 +245,10 @@
     content: "\f319"; 
     font-family: "dashicons";
     font-size: 1.15rem;
-    color: #c33a19; /* WC Rajasthan Terracotta */
+    color: #c33a19;
 }
 
-/* --- Hover States (Invert to solid backgrounds) --- */
+/* Hover States (Invert colors) */
 #tix-attendees a.tix-attendee-twitter:hover {
     background-color: #0d2345;
     border-color: #0d2345;
@@ -275,47 +265,76 @@
     color: #ffffff;
 }
 
-/* --- Responsive Layout Breakpoints --- */
 
-/* Tablet (Under 992px) */
+/* --- 7. Responsive Adjustments (Ticketing & Attendees) --- */
+
 @media (max-width: 992px) {
     #tix-attendees ul.tix-attendee-list {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Large Mobile (Under 768px) */
 @media (max-width: 768px) {
+    /* Attendee Layout Adjustments */
     #tix-attendees ul.tix-attendee-list {
         grid-template-columns: 1fr;
     }
     
-    /* Tickets & Checkout Form Mobile Layouts */
-    #tix .tix_tickets_table th, #tix .tix_tickets_table td { padding: 1rem 0.75rem; }
-    #tix-coupon-container { flex-direction: column; align-items: flex-end; }
-    #tix-coupon-container input[type="text"] { width: 100%; }
-    
-    #tix .tix-attendee-form tr, #tix .tix-attendee-form td, #tix .tix-attendee-form th {
-        display: block; width: 100%; text-align: left;
+    /* Tickets & Checkout Form Adjustments */
+    #tix .tix_tickets_table th, 
+    #tix .tix_tickets_table td { 
+        padding: 1rem 0.75rem; 
     }
-    #tix .tix-attendee-form .tix-left { padding-bottom: 0.25rem; border-bottom: none; }
-    #tix .tix-attendee-form .tix-right { padding-top: 0; }
+    #tix-coupon-container { 
+        flex-direction: column; 
+        align-items: flex-end; 
+    }
+    #tix-coupon-container input[type="text"] { 
+        width: 100%; 
+    }
+    #tix .tix-attendee-form tr, 
+    #tix .tix-attendee-form td, 
+    #tix .tix-attendee-form th {
+        display: block; 
+        width: 100%; 
+        text-align: left;
+    }
+    #tix .tix-attendee-form .tix-left { 
+        padding-bottom: 0.25rem; 
+        border-bottom: none; 
+    }
+    #tix .tix-attendee-form .tix-right { 
+        padding-top: 0; 
+    }
 }
 
-/* Extra Small Mobile (Under 400px) - Maintains horizontal feel by shrinking image slightly */
 @media (max-width: 400px) {
+    /* Small Mobile Attendee Layout */
     #tix-attendees ul.tix-attendee-list li {
-        grid-template-columns: 64px 38px 38px 1fr;
         padding: 1rem;
+        min-height: 112px; /* 64px image + 48px padding */
     }
     #tix-attendees ul.tix-attendee-list img.avatar {
         width: 64px;
         height: 64px;
+    }
+    #tix-attendees .tix-attendee-name {
+        padding-left: 12px;
     }
     #tix-attendees .tix-attendee-name .tix-first {
         font-size: 1.15rem;
     }
     #tix-attendees .tix-attendee-name .tix-last {
         font-size: 0.75rem;
+    }
+    
+    /* Adjust icon absolute positions for smaller avatar */
+    #tix-attendees a.tix-attendee-twitter {
+        left: 92px; /* 16px padding + 64px avatar + 12px spacing */
+        bottom: 1rem;
+    }
+    #tix-attendees a.tix-attendee-url {
+        left: 134px;
+        bottom: 1rem;
     }
 }
