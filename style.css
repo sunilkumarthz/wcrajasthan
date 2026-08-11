@@ -111,25 +111,49 @@
 	background: var(--wcraj-cream);
 	border: 1px solid var(--wcraj-border);
 	border-radius: var(--wcraj-radius);
-	box-shadow: 0 2px 10px rgba(122, 19, 50, 0.06);
-	transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-}
+		box-shadow: 0 4px 18px rgba(122, 19, 50, 0.08);
+		transition: box-shadow 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
+		overflow: hidden;
+	}
 
-.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
-	border-color: var(--wcraj-gold);
-	box-shadow: 0 6px 18px rgba(122, 19, 50, 0.12);
-	transform: translateY(-1px);
-}
+	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
+		border-color: rgba(201, 152, 47, 0.9);
+		box-shadow: 0 10px 24px rgba(122, 19, 50, 0.14);
+		transform: translateY(-2px);
+	}
 
-.tix-js .tix_tickets_table tbody tr td,
-.tix-js .tix_tickets_table tbody tr th {
-	padding: 20px;
-	vertical-align: middle;
-	border: none;
-}
+	.tix-js .tix_tickets_table tbody tr td,
+	.tix-js .tix_tickets_table tbody tr th {
+		padding: 22px 18px;
+		vertical-align: middle;
+		border: none;
+	}
 
-.tix-js .tix_tickets_table tbody tr td:first-child,
-.tix-js .tix_tickets_table tbody tr th:first-child {
+	.tix-js .tix-column-price,
+	.tix-js .tix-column-remaining,
+	.tix-js .tix-column-quantity {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 6px;
+		min-width: 120px;
+	}
+
+	.tix-js .tix-column-price {
+		text-align: right;
+	}
+
+	.tix-js .tix-column-remaining {
+		min-width: 100px;
+	}
+
+	.tix-js .tix-column-quantity {
+		min-width: 120px;
+	}
+
+	.tix-js .tix-column-quantity select {
+		min-width: 110px;
 	border-top-left-radius: var(--wcraj-radius);
 	border-bottom-left-radius: var(--wcraj-radius);
 }
@@ -202,23 +226,16 @@
 	appearance: none;
 	-webkit-appearance: none;
 	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a1332'/%3E%3C/svg%3E") no-repeat right 14px center;
-	border: 1.5px solid var(--wcraj-border);
-	border-radius: 8px;
-	padding: 8px 34px 8px 14px;
-	font-size: 0.95rem;
-	font-weight: 600;
-	color: var(--wcraj-ink);
-	cursor: pointer;
-	transition: border-color 0.2s ease;
-}
-
-.tix-js .tix-column-quantity select:hover,
-.tix-js .tix-column-quantity select:focus {
-	border-color: var(--wcraj-pink);
-	outline: none;
-}
-
-/* ---------- Coupon row ---------- */
+		border: 1.5px solid rgba(236, 217, 201, 0.95);
+		border-radius: 12px;
+		padding: 10px 38px 10px 14px;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--wcraj-ink);
+		cursor: pointer;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		min-width: 120px;
+	}
 .tix-js .tix-row-coupon td {
 	padding: 4px 20px 18px;
 	text-align: right !important;
@@ -277,18 +294,20 @@
 .tix-js form .tix-field {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 10px;
 	background: #fff;
-	padding: 18px 16px;
-	border: 1px solid var(--wcraj-border);
+	padding: 20px 18px;
+	border: 1px solid rgba(236, 217, 201, 0.8);
 	border-radius: 16px;
+	box-shadow: 0 6px 20px rgba(122, 19, 50, 0.04);
 }
 
-.tix-js form .tix-field-label,
-.tix-js form label {
-	font-size: 0.95rem;
-	font-weight: 700;
-	color: var(--wcraj-maroon);
+	.tix-js form .tix-field .tix-field-description {
+		font-size: 0.92rem;
+		color: var(--wcraj-muted);
+		line-height: 1.6;
+	}
+	color: var(--wcraj-muted);
 }
 
 .tix-js form input[type="text"],
@@ -552,16 +571,12 @@
 	border-top: 2px solid var(--wcraj-gold);
 	font-size: 0.88rem;
 	color: var(--wcraj-ink);
-}
+		padding: 16px 18px;
+	}
 
-.tix-js .tix-order-summary .tix-row-total strong {
-	color: var(--wcraj-maroon);
-	font-size: 1.15rem;
-}
-
-.tix-js .tix-order-summary .tix-row-total td:last-child {
-	text-align: right;
-	white-space: nowrap;
+	.tix-js .tix-order-summary .tix-row-total strong {
+		color: var(--wcraj-maroon);
+		font-size: 1.2rem;
 }
 
 /* ---------- Attendee registration form ---------- */
@@ -613,21 +628,23 @@
 	width: 34%;
 	font-weight: 600;
 	color: var(--wcraj-ink);
-	font-size: 0.94rem;
-	line-height: 1.5;
-}
+		font-size: 0.95rem;
+		line-height: 1.65;
+		padding-right: 10px;
+	}
 
-.tix-js .tix-attendee-form .tix-left a {
-	color: var(--wcraj-pink);
-	text-decoration: underline;
-}
+	.tix-js .tix-attendee-form .tix-left a {
+		color: var(--wcraj-pink);
+		text-decoration: underline;
+	}
 
-.tix-js .tix-attendee-form .tix-right {
-	width: 66%;
-}
+	.tix-js .tix-attendee-form .tix-right {
+		width: 66%;
+	}
 
-.tix-js .tix-required-star {
-	color: var(--wcraj-pink);
+	.tix-js .tix-attendee-form td,
+	.tix-js .tix-attendee-form th:not([colspan]) {
+		padding: 18px 20px;
 	margin-left: 2px;
 }
 
