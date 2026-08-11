@@ -1,6 +1,6 @@
 /* ========================================================
    WORDCAMP RAJASTHAN TICKET & ATTENDEE UI/UX ENHANCEMENTS
-   Scoped strictly to #tix and #tix-attendees IDs
+   Final Polished Version - Fully Responsive Grid
    ======================================================== */
 
 /* --- 1. General Table Styling (Tickets, Order Summary, Attendee Form) --- */
@@ -23,7 +23,6 @@
     vertical-align: middle;
 }
 
-/* Header rows */
 #tix .tix_tickets_table thead th {
     background-color: #f8f9fa;
     font-weight: 600;
@@ -41,10 +40,10 @@
 
 /* --- 2. Ticket Selection Specifics --- */
 #tix .tix-ticket-title {
-    font-family: 'Fraunces', serif; /* WC Rajasthan Heading Font */
+    font-family: 'Fraunces', serif;
     font-size: 1.35rem;
     font-weight: 700;
-    color: #0d2345; /* WC Rajasthan Dark Blue */
+    color: #0d2345; 
     display: block;
     margin-bottom: 0.5rem;
 }
@@ -86,18 +85,14 @@
     min-width: 80px;
 }
 
-/* Focus States for Accessibility */
-#tix input[type="text"]:focus,
-#tix input[type="email"]:focus,
-#tix input[type="url"]:focus,
+#tix input:focus,
 #tix select:focus {
-    border-color: #c33a19; /* WC Rajasthan Terracotta */
+    border-color: #c33a19;
     box-shadow: 0 0 0 3px rgba(195, 58, 25, 0.15);
     outline: none;
     background-color: #ffffff;
 }
 
-/* Radios and Checkboxes alignment */
 #tix fieldset label {
     font-family: 'Inter', sans-serif;
     display: inline-flex;
@@ -119,13 +114,13 @@
 #tix input[type="submit"],
 #tix .tix-checkout-button {
     font-family: 'Inter', sans-serif;
-    background-color: #c33a19; /* WC Rajasthan Terracotta */
+    background-color: #c33a19;
     color: #ffffff;
     border: none;
     padding: 0.875rem 2.5rem;
     font-size: 1rem;
     font-weight: 700;
-    border-radius: 30px; /* Pill shape for modern look */
+    border-radius: 30px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     text-transform: uppercase;
@@ -141,12 +136,11 @@
     box-shadow: 0 6px 14px rgba(195, 58, 25, 0.4);
 }
 
-/* --- 5. Coupon Section --- */
+/* --- 5. Coupon & Payment Tabs --- */
 #tix .tix-row-coupon td {
     background-color: #fffaf9;
     border-top: 2px dashed #ddd;
 }
-
 #tix-coupon-link {
     font-family: 'Inter', sans-serif;
     color: #c33a19;
@@ -154,226 +148,232 @@
     text-decoration: none;
     border-bottom: 1px dashed #c33a19;
 }
-
 #tix-coupon-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+    display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 10px;
 }
-
 #tix-coupon-container input[type="text"] {
-    width: auto;
-    min-width: 220px;
+    width: auto; min-width: 220px;
 }
-
-/* --- 6. Payment Method Tabs --- */
 #tix .tix-payment-method {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.5rem;
 }
-
 #tix .tix-payment-tab {
-    font-family: 'Inter', sans-serif;
-    background: #f1f3f5;
-    border: 2px solid transparent;
-    padding: 0.85rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #555;
-    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif; background: #f1f3f5; border: 2px solid transparent; padding: 0.85rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: #555; transition: all 0.2s ease;
 }
+#tix .tix-payment-tab:hover { background: #e9ecef; }
+#tix .tix-payment-tab.tix-tab-selected { background: #fffafa; border-color: #c33a19; color: #c33a19; }
 
-#tix .tix-payment-tab:hover {
-    background: #e9ecef;
-}
+/* ========================================================
+   ATTENDEES CARD LAYOUT (Horizontal Design)
+   ======================================================== */
 
-#tix .tix-payment-tab.tix-tab-selected {
-    background: #fffafa;
-    border-color: #c33a19;
-    color: #c33a19;
-}
-
-/* --- 7. Attendees Grid Layout (Strictly 3 per row) --- */
 #tix-attendees ul.tix-attendee-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 cards per row */
-    gap: 2rem; /* Comfortable breathing room between cards */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 #tix-attendees ul.tix-attendee-list li {
-    text-align: center;
     background: #ffffff;
-    padding: 2.5rem 1.5rem;
-    border-radius: 16px; /* Slightly softer corners */
+    padding: 1.25rem;
+    border-radius: 12px;
     border: 1px solid #eaeaea;
-    box-shadow: 0 4px 12px rgba(13, 35, 69, 0.04); /* Uses WC Rajasthan dark blue for shadow */
+    box-shadow: 0 4px 12px rgba(13, 35, 69, 0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    
+    /* Grid layout inside the card to match reference image */
+    display: grid;
+    grid-template-columns: 88px max-content max-content 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 1.25rem;
+    row-gap: 0.25rem;
     align-items: center;
 }
 
 #tix-attendees ul.tix-attendee-list li:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(13, 35, 69, 0.08);
 }
 
+/* Avatar on the left */
 #tix-attendees ul.tix-attendee-list img.avatar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3; /* Spans both rows */
     border-radius: 50%;
-    background: #c33a190d; /* Theme integration: Terracotta background ring */
-    border: 2px solid #c33a1938; 
-    padding: 6px; /* Space between image and ring */
-    margin-bottom: 1.5rem;
-    width: 104px;
-    height: 104px;
+    background: #ffffff;
+    border: 2px solid #c33a1938; /* Terracotta outer ring */
+    padding: 4px;
+    width: 88px;
+    height: 88px;
     object-fit: cover;
+    margin: 0;
 }
 
-/* Theme Typography Integration for Attendees */
+/* Name on Top Right */
 #tix-attendees .tix-attendee-name {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2;
+    align-self: end; /* Aligns to bottom of top half */
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-    line-height: 1.2;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 #tix-attendees .tix-attendee-name .tix-first {
-    font-family: 'Fraunces', serif; /* WC Rajasthan Heading Font */
+    font-family: 'Fraunces', serif;
     font-weight: 700;
-    font-size: 1.35rem;
-    color: #0d2345; /* WC Rajasthan Dark Blue */
+    font-size: 1.25rem;
+    color: #0d2345;
 }
 
 #tix-attendees .tix-attendee-name .tix-last {
-    font-family: 'Inter', sans-serif; /* WC Rajasthan Body/Sub Font */
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 0.9rem;
-    color: #c33a19; /* WC Rajasthan Terracotta */
+    font-size: 0.85rem;
+    color: #c33a19;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-/* --- 8. Attendee Social Links & Icon UI Fix --- */
-
-/* Hide the duplicate plain text fields cluttering the UI */
+/* Hide plain text fields */
 #tix-attendees li > div.tix-website,
 #tix-attendees li > div.tix-x-handle {
     display: none !important;
 }
 
-/* Transform the anchor tags into circular button containers */
+/* Icons on Bottom Right */
 #tix-attendees a.tix-attendee-twitter,
 #tix-attendees a.tix-attendee-url {
+    grid-row: 2 / 3; /* Placed in bottom row */
+    align-self: start; /* Aligns to top of bottom half */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    margin: 1rem 0.35rem 0;
+    width: 32px;
+    height: 32px;
     background-color: #f8f9fa;
     border: 1px solid #eaeaea;
     border-radius: 50%;
-    
-    /* This completely hides the original generated text */
     color: transparent !important; 
     text-decoration: none;
     position: relative;
     transition: all 0.3s ease;
+    margin: 0;
 }
 
-/* Hover state for the icon buttons */
-#tix-attendees a.tix-attendee-twitter:hover,
-#tix-attendees a.tix-attendee-url:hover {
-    background-color: #c33a19; /* WC Rajasthan Terracotta */
-    border-color: #c33a19;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(195, 58, 25, 0.25);
-}
-
-/* Inject the Icons using pseudo-elements */
+/* Icon injection */
 #tix-attendees a.tix-attendee-twitter::before,
 #tix-attendees a.tix-attendee-url::before {
     position: absolute;
-    color: #0d2345; /* WC Rajasthan Dark Blue */
-    font-size: 1.25rem;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
     line-height: 1;
 }
 
-/* Make icons white on hover */
-#tix-attendees a.tix-attendee-twitter:hover::before,
-#tix-attendees a.tix-attendee-url:hover::before {
-    color: #ffffff;
-}
-
-/* X (Twitter) Icon */
+/* 𝕏 Icon */
 #tix-attendees a.tix-attendee-twitter::before {
     content: "𝕏";
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    color: #0d2345; /* Brand Blue */
 }
 
 /* Website Icon */
 #tix-attendees a.tix-attendee-url::before {
     content: "🌐";
-    filter: grayscale(100%) contrast(200%);
+    filter: grayscale(0%) contrast(110%); /* Native color emoji */
 }
 
-/* --- 9. Responsive Adjustments --- */
+/* Icon Hover States */
+#tix-attendees a.tix-attendee-twitter:hover {
+    background-color: #0d2345;
+    border-color: #0d2345;
+}
+#tix-attendees a.tix-attendee-twitter:hover::before {
+    color: #ffffff;
+}
+
+#tix-attendees a.tix-attendee-url:hover {
+    background-color: #c33a19;
+    border-color: #c33a19;
+}
+#tix-attendees a.tix-attendee-url:hover::before {
+    filter: brightness(0) invert(1); /* Turns emoji solid white */
+}
+
+/* --- Responsive Layout Breakpoints --- */
 
 /* Tablet (Under 992px) */
 @media (max-width: 992px) {
     #tix-attendees ul.tix-attendee-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Large Mobile (Under 768px) */
 @media (max-width: 768px) {
+    #tix-attendees ul.tix-attendee-list {
+        grid-template-columns: 1fr;
+    }
+    
     #tix .tix_tickets_table th,
     #tix .tix_tickets_table td {
         padding: 1rem 0.75rem;
     }
-    
     #tix-coupon-container {
-        flex-direction: column;
-        align-items: flex-end;
+        flex-direction: column; align-items: flex-end;
     }
+    #tix-coupon-container input[type="text"] { width: 100%; }
     
-    #tix-coupon-container input[type="text"] {
-        width: 100%;
-    }
-    
-    /* Stack forms gracefully on mobile */
     #tix .tix-attendee-form tr, 
     #tix .tix-attendee-form td, 
     #tix .tix-attendee-form th {
-        display: block;
-        width: 100%;
-        text-align: left;
+        display: block; width: 100%; text-align: left;
     }
-    
     #tix .tix-attendee-form .tix-left {
-        padding-bottom: 0.25rem;
-        border-bottom: none;
+        padding-bottom: 0.25rem; border-bottom: none;
     }
-    
-    #tix .tix-attendee-form .tix-right {
-        padding-top: 0;
-    }
+    #tix .tix-attendee-form .tix-right { padding-top: 0; }
 }
 
-/* Small Mobile (Under 576px) */
-@media (max-width: 576px) {
-    #tix-attendees ul.tix-attendee-list {
-        grid-template-columns: 1fr; /* 1 card per row on mobile phones */
+/* Small Mobile Adjustments */
+@media (max-width: 400px) {
+    /* Stack avatar and text vertically on very small screens */
+    #tix-attendees ul.tix-attendee-list li {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        text-align: center;
+        justify-items: center;
+        row-gap: 0.75rem;
+    }
+    
+    #tix-attendees ul.tix-attendee-list img.avatar {
+        grid-column: 1 / -1;
+        grid-row: 1 / 2;
+    }
+    
+    #tix-attendees .tix-attendee-name {
+        grid-column: 1 / -1;
+        grid-row: 2 / 3;
+        justify-content: center;
+    }
+    
+    #tix-attendees a.tix-attendee-twitter {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        justify-self: end;
+        margin-right: 6px;
+    }
+    
+    #tix-attendees a.tix-attendee-url {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        justify-self: start;
+        margin-left: 6px;
+        transform: translateX(44px); /* Shifts it next to twitter icon */
     }
 }
