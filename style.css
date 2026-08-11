@@ -1,1540 +1,515 @@
 :root {
-	--indigo: #0D2343;
-	--terracotta: #C33A19;
-	--marigold: #E39D1C;
-	--cream: #FBEEDD;
-	--white: #FFFFFF;
-	--charcoal: #2C2C2A;
-	--indigo-08: rgba(13,35,67,.08);
-	--indigo-14: rgba(13,35,67,.14);
-	--maxw: 1140px;
-	--font-display: "Fraunces", Georgia, serif;
-	--font-body: "Inter", system-ui, -apple-system, sans-serif;
-	--font-deva: "Yatra One", serif;
-	--r: 14px;
+  --indigo: #0D2343;
+  --terracotta: #C33A19;
+  --marigold: #E39D1C;
+  --cream: #FBEEDD;
+  --white: #FFFFFF;
+  --charcoal: #2C2C2A;
+  --muted: #6D6D6D;
+  --border: rgba(13, 35, 67, 0.12);
+  --surface: #F6F4EE;
+  --radius: 24px;
+  --shadow: 0 24px 56px rgba(13, 35, 67, 0.08);
+  --font-base: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* ==========================================================================
-   WordCamp Rajasthan — Tickets Block (Camptix) Styling
-   Palette drawn from the homepage theme for a cohesive experience.
-   ========================================================================== */
+html {
+  box-sizing: border-box;
+  font-family: var(--font-base);
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  color: var(--charcoal);
+  background: #fff;
+}
 
 .tix-js {
-	--wcraj-indigo: var(--indigo);
-	--wcraj-terracotta: var(--terracotta);
-	--wcraj-pink: var(--terracotta);
-	--wcraj-pink-dark: #962a14;
-	--wcraj-marigold: var(--marigold);
-	--wcraj-gold: var(--marigold);
-	--wcraj-gold-light: rgba(227,157,28,0.14);
-	--wcraj-cream: var(--cream);
-	--wcraj-white: var(--white);
-	--wcraj-charcoal: var(--charcoal);
-	--wcraj-ink: var(--charcoal);
-	--wcraj-muted: rgba(44,44,42,.60);
-	--wcraj-indigo-08: var(--indigo-08);
-	--wcraj-indigo-14: var(--indigo-14);
-	--wcraj-border: var(--indigo-08);
-	--wcraj-radius: var(--r);
-	--wcraj-font-body: var(--font-body, var(--wp--preset--font-family--body, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif));
-	--wcraj-font-heading: var(--font-display, var(--wp--preset--font-family--heading, Georgia, serif));
-
-	font-family: var(--wcraj-font-body);
-	font-size: var(--wp--preset--font-size--medium, 16px);
-	line-height: 1.7;
-	color: var(--wcraj-charcoal);
-	max-width: var(--maxw);
-	margin: 0 auto;
-	padding: 0 24px;
-	overflow-x: hidden;
+  font-family: var(--font-base);
+  color: var(--charcoal);
+  line-height: 1.7;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px 44px;
 }
 
-/*
- * WCRAJ uses small uppercase, letter-spaced "eyebrow" labels above its
- * section headings (e.g. "The event", "Get involved") — this block
- * reuses that pattern for its own section eyebrows/badges so it reads
- * as part of the same page, not a bolted-on plugin widget.
- */
-.tix-js .tix-eyebrow {
-	display: inline-flex;
-	align-items: center;
-	font-family: var(--wcraj-font-body);
-	font-size: 0.78rem;
-	font-weight: 700;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--wcraj-terracotta);
-	background: rgba(195,58,25,.08);
-	border: 1px solid rgba(195,58,25,.18);
-	padding: 7px 14px;
-	border-radius: 999px;
-	margin-bottom: 10px;
+.tix-js a {
+  color: var(--terracotta);
+  text-decoration: none;
 }
 
-/* ---------- Table shell ---------- */
+.tix-js a:hover,
+.tix-js a:focus-visible {
+  color: #962A14;
+}
+
+.tix-js h1,
+.tix-js h2,
+.tix-js h3,
+.tix-js h4,
+.tix-js h5,
+.tix-js h6 {
+  font-family: var(--font-base);
+  color: var(--indigo);
+  margin: 0 0 20px;
+}
+
+.tix-js p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.tix-js button,
+.tix-js input,
+.tix-js select {
+  font: inherit;
+}
+
+/* Ticket list cards */
 .tix-js .tix_tickets_table {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: 0 14px;
-	font-size: 1rem;
-	max-width: 100%;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
 }
 
-/* Convert the ticket rows into a two-column card grid on larger screens. */
-@media (min-width: 840px) {
-	.tix-js .tix_tickets_table {
-		display: block;
-	}
-
-	.tix-js .tix_tickets_table tbody {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 20px;
-	}
-
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		display: block;
-		margin: 0;
-	}
-
-	.tix-js .tix_tickets_table thead {
-		display: none;
-	}
+.tix-js .tix_tickets_table tbody {
+  display: grid;
+  gap: 22px;
 }
 
-/* ---------- Header row ---------- */
-.tix-js .tix_tickets_table thead th {
-	text-align: left;
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: 0.78rem;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--wcraj-maroon);
-	padding: 0 20px 10px;
-	border-bottom: 2px solid var(--wcraj-gold);
-}
-
-.tix-js .tix_tickets_table thead th.tix-column-price,
-.tix-js .tix_tickets_table thead th.tix-column-remaining {
-	text-align: center;
-}
-
-.tix-js .tix_tickets_table thead th.tix-column-quantity {
-	text-align: right;
-}
-
-/* ---------- Ticket rows as "cards" ---------- */
 .tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-	background: var(--wcraj-white);
-	border: 1px solid var(--wcraj-border);
-	border-radius: var(--wcraj-radius);
-	box-shadow: 0 18px 42px rgba(13,35,67,.06);
-	transition: box-shadow 0.24s ease, transform 0.24s ease, border-color 0.24s ease;
-	overflow: hidden;
+  display: block;
+  padding: 28px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon):hover {
-	border-color: rgba(195,58,25,.9);
-	box-shadow: 0 20px 50px rgba(13,35,67,.12);
-	transform: translateY(-2px);
+  transform: translateY(-2px);
+  border-color: rgba(195, 58, 25, 0.2);
+  box-shadow: 0 28px 70px rgba(13, 35, 67, 0.1);
 }
 
 .tix-js .tix_tickets_table tbody tr td,
 .tix-js .tix_tickets_table tbody tr th {
-	padding: 22px 18px;
-	vertical-align: middle;
-	border: none;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.tix-js .tix-column-description {
+  margin-bottom: 18px;
+}
+
+.tix-js .tix-ticket-title {
+  display: block;
+  font-size: clamp(1.18rem, 1.05rem + 0.55vw, 1.35rem);
+  font-weight: 700;
+  color: var(--indigo);
+  margin-bottom: 10px;
+}
+
+.tix-js .tix-ticket-excerpt {
+  display: block;
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  max-width: 54ch;
 }
 
 .tix-js .tix-column-price,
 .tix-js .tix-column-remaining,
 .tix-js .tix-column-quantity {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	justify-content: center;
-	gap: 8px;
-	min-width: 120px;
+  margin-top: 18px;
 }
 
 .tix-js .tix-column-price {
-	font-weight: 700;
-	font-size: 1.1rem;
-	color: var(--wcraj-terracotta);
-	text-align: right;
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--terracotta);
 }
 
 .tix-js .tix-column-remaining {
-	color: var(--wcraj-indigo-14);
-	font-size: 0.92rem;
-}
-
-.tix-js .tix-column-quantity {
-	min-width: 120px;
-}
-
-.tix-js .tix-column-quantity select {
-	min-width: 110px;
-}
-
-.tix-js .tix_tickets_table tbody tr td:last-child,
-.tix-js .tix_tickets_table tbody tr th:last-child {
-	border-top-right-radius: var(--wcraj-radius);
-	border-bottom-right-radius: var(--wcraj-radius);
-}
-
-/* ---------- Ticket title / description ---------- */
-.tix-js .tix-ticket-title {
-	display: block;
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.15rem);
-	color: var(--wcraj-maroon);
-	margin-bottom: 6px;
-}
-
-.tix-js .tix-ticket-excerpt {
-	display: block;
-	color: var(--wcraj-muted);
-	font-size: 0.92rem;
-	line-height: 1.5;
-	max-width: 46ch;
-}
-
-.tix-js .tix-discount {
-	display: inline-block;
-	margin-top: 8px;
-	padding: 3px 10px;
-	background: var(--wcraj-gold-light);
-	color: var(--wcraj-gold) !important;
-	color: #8a6a12;
-	border-radius: 999px;
-	font-size: 0.72rem;
-	font-weight: 700;
-	letter-spacing: 0.03em;
-	text-transform: uppercase;
-}
-
-/* ---------- Price ---------- */
-.tix-js .tix-column-price {
-	text-align: center;
-	font-weight: 700;
-	font-size: 1.05rem;
-	color: var(--wcraj-pink-dark);
-	white-space: nowrap;
-}
-
-/* ---------- Remaining ---------- */
-.tix-js .tix-column-remaining {
-	text-align: center;
-	color: var(--wcraj-muted);
-	font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .tix-js .tix-column-remaining::after {
-	content: " left";
-	font-size: 0.8rem;
+  content: " left";
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-/* ---------- Quantity select ---------- */
 .tix-js .tix-column-quantity {
-	text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
 }
 
 .tix-js .tix-column-quantity select {
-	appearance: none;
-	-webkit-appearance: none;
-	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230D2343'/%3E%3C/svg%3E") no-repeat right 16px center;
-	border: 1.5px solid var(--wcraj-indigo-08);
-	border-radius: 12px;
-	padding: 10px 40px 10px 14px;
-	font-size: 0.95rem;
-	font-weight: 600;
-	color: var(--wcraj-charcoal);
-	cursor: pointer;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
-	min-width: 120px;
-}
-.tix-js .tix-row-coupon td {
-	padding: 4px 20px 18px;
-	text-align: right !important;
-	font-size: 0.88rem;
-	color: var(--wcraj-muted);
-	border: none;
-	background: transparent;
+  width: min(100%, 220px);
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230D2343'/%3E%3C/svg%3E") no-repeat right 16px center;
+  background-size: 10px 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 1rem;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.tix-js .tix-row-coupon strong {
-	color: var(--wcraj-pink-dark);
-	font-weight: 700;
-}
-
-/* ---------- Submit button ---------- */
-.tix-js input[type="submit"] {
-	cursor: pointer;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	background: linear-gradient(135deg, var(--wcraj-pink) 0%, var(--wcraj-maroon) 100%);
-	color: #fff !important;
-	border: none;
-	border-radius: 999px;
-	padding: 14px 34px;
-	font-size: 1rem;
-	font-weight: 700;
-	letter-spacing: 0.02em;
-	box-shadow: 0 4px 14px rgba(122, 19, 50, 0.25);
-	transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-	margin-top: 16px;
-}
-
-.tix-js input[type="submit"]:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 8px 20px rgba(122, 19, 50, 0.32);
-	filter: brightness(1.05);
-}
-
-.tix-js input[type="submit"]:active {
-	transform: translateY(0);
-}
-
-.tix-js .tix-clear {
-	clear: both;
-}
-
-/* ---------- Form layout improvements ---------- */
-.tix-js form {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 18px 24px;
-	align-items: start;
-}
-
-.tix-js form .tix-field {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-		background: var(--wcraj-white);
-		padding: 20px 18px;
-		border: 1px solid var(--wcraj-indigo-08);
-		border-radius: 16px;
-		box-shadow: 0 18px 40px rgba(13,35,67,.06);
-	}
-
-	.tix-js form .tix-field .tix-field-description {
-		font-size: 0.92rem;
-		color: var(--wcraj-indigo-14);
-		line-height: 1.7;
-	}
-.tix-js form input[type="url"],
-.tix-js form select,
-.tix-js form textarea {
-	width: 100%;
-	padding: 12px 14px;
-	border: 1px solid var(--wcraj-border);
-	border-radius: 12px;
-	font-size: 0.95rem;
-	color: var(--wcraj-ink);
-	background: #fff;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tix-js form input[type="text"]:focus,
-.tix-js form input[type="email"]:focus,
-.tix-js form input[type="tel"]:focus,
-.tix-js form input[type="url"]:focus,
-.tix-js form select:focus,
-.tix-js form textarea:focus {
-	border-color: var(--wcraj-pink);
-	box-shadow: 0 0 0 4px rgba(185, 28, 76, 0.08);
-	outline: none;
-}
-
-.tix-js form .tix-field-full {
-	grid-column: 1 / -1;
-}
-
-.tix-js form .tix-field-small {
-	max-width: 240px;
-}
-
-.tix-js .tix-field-checkbox,
-.tix-js .tix-field-radio {
-	background: transparent;
-	border: none;
-	padding: 0;
-}
-
-.tix-js .tix-field-checkbox label,
-.tix-js .tix-field-radio label {
-	font-weight: 600;
-}
-
-.tix-js .tix-field-summary {
-	grid-column: 1 / -1;
-	margin-top: 4px;
-	color: var(--wcraj-muted);
-	font-size: 0.92rem;
-	line-height: 1.5;
+.tix-js .tix-column-quantity select:focus {
+  outline: none;
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 4px rgba(195, 58, 25, 0.12);
 }
 
 .tix-js .tix-row-coupon td {
-	padding: 4px 20px 18px;
-	text-align: right !important;
-	font-size: 0.88rem;
-	color: var(--wcraj-muted);
-	border: none;
-	background: transparent;
+  padding: 18px 24px 22px;
+  text-align: right !important;
+  font-size: 0.95rem;
+  background: transparent;
 }
 
-@media (max-width: 900px) {
-	.tix-js .tix_tickets_table {
-		display: block;
-	}
-
-	.tix-js .tix_tickets_table tbody {
-		display: block;
-	}
-
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		display: block;
-		padding: 18px 18px;
-		margin-bottom: 22px;
-	}
-
-	.tix-js .tix_tickets_table tbody tr td,
-	.tix-js .tix_tickets_table tbody tr th {
-		padding: 10px 0;
-	}
-
-	.tix-js form {
-		grid-template-columns: 1fr;
-	}
-
-	.tix-js form .tix-field {
-		padding: 18px 16px;
-	}
+.tix-js #tix-coupon-link {
+  color: var(--indigo);
+  font-weight: 600;
 }
 
-/* ==========================================================================
-   Responsive — stack cards on mobile like the rest of the WCRAJ site
-   ========================================================================== */
-@media (max-width: 700px) {
-	.tix-js .tix_tickets_table,
-	.tix-js .tix_tickets_table thead,
-	.tix-js .tix_tickets_table tbody,
-	.tix-js .tix_tickets_table tr,
-	.tix-js .tix_tickets_table td,
-	.tix-js .tix_tickets_table th {
-		display: block;
-		width: 100%;
-	}
-
-	.tix-js .tix_tickets_table thead {
-		display: none;
-	}
-
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		padding: 18px 20px 20px;
-	}
-
-	.tix-js .tix_tickets_table tbody tr td,
-	.tix-js .tix_tickets_table tbody tr th {
-		padding: 4px 0;
-	}
-
-	.tix-js .tix-column-price,
-	.tix-js .tix-column-remaining,
-	.tix-js .tix-column-quantity {
-		text-align: left;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.tix-js .tix-column-price::before {
-		content: "Price";
-		font-size: 0.75rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-column-remaining::before {
-		content: "Remaining";
-		font-size: 0.75rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-column-quantity::before {
-		content: "Quantity";
-		font-size: 0.75rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-row-coupon td {
-		text-align: left !important;
-	}
-
-	.tix-js input[type="submit"] {
-		float: none;
-		width: 100%;
-		text-align: center;
-	}
+.tix-js #tix-coupon-link:hover,
+.tix-js #tix-coupon-link:focus-visible {
+  color: var(--terracotta);
 }
 
-/* ==========================================================================
-   WordCamp Rajasthan — Checkout: Order Summary + Attendee Registration Form
-   ========================================================================== */
-
-.tix-js h2,
-.tix-js #tix-registration-information {
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: clamp(1.2rem, 1.05rem + 0.75vw, 1.5rem);
-	color: var(--wcraj-maroon);
-	margin: clamp(24px, 5vw, 40px) 0 18px;
-	padding-bottom: 10px;
-	border-bottom: 2px solid var(--wcraj-gold);
+.tix-js #tix-coupon-container {
+  margin-top: 14px;
+  display: none;
 }
 
-.tix-js h2:first-child {
-	margin-top: 0;
+.tix-js #tix-coupon-container input[type="text"] {
+  width: min(100%, 320px);
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
 }
 
-/* ---------- Order summary table ---------- */
-.tix-js .tix-order-summary {
-	width: 100%;
-	border-collapse: collapse;
-	background: var(--wcraj-cream);
-	border: 1px solid var(--wcraj-border);
-	border-radius: var(--wcraj-radius);
-	overflow: hidden;
-	font-size: 0.95rem;
+.tix-js #tix-coupon-container input[type="submit"] {
+  margin-top: 12px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--terracotta);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
 }
 
-.tix-js .tix-order-summary thead th {
-	text-align: left;
-	font-size: 0.74rem;
-	font-weight: 700;
-	letter-spacing: 0.07em;
-	text-transform: uppercase;
-	color: #fff;
-	background: var(--wcraj-maroon);
-	padding: 12px 18px;
+.tix-js form > p {
+  margin: 0;
+  padding: 18px 0 0;
+  text-align: right;
 }
 
-.tix-js .tix-order-summary thead th.tix-column-per-ticket,
-.tix-js .tix-order-summary thead th.tix-column-quantity,
-.tix-js .tix-order-summary thead th.tix-column-price {
-	text-align: center;
+.tix-js form > p input[type="submit"] {
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--terracotta);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.tix-js .tix-order-summary tbody td {
-	padding: 16px 18px;
-	border-top: 1px solid var(--wcraj-border);
-	vertical-align: middle;
+.tix-js form > p input[type="submit"]:hover {
+  transform: translateY(-1px);
+  background: #a82f13;
 }
 
-.tix-js .tix-order-summary tbody tr:first-child td {
-	border-top: none;
+/* Order summary and attendee tables */
+.tix-js .tix-order-summary,
+.tix-js .tix-ticket-form,
+.tix-js .tix-attendee-form {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 24px;
 }
 
-.tix-js .tix-order-summary .tix-column-description strong {
-	color: var(--wcraj-maroon);
-	font-weight: 700;
-	font-size: 1.02rem;
+.tix-js .tix-order-summary th,
+.tix-js .tix-order-summary td,
+.tix-js .tix-ticket-form th,
+.tix-js .tix-ticket-form td,
+.tix-js .tix-attendee-form th,
+.tix-js .tix-attendee-form td {
+  padding: 16px 18px;
+  vertical-align: top;
 }
 
-.tix-js .tix-order-summary .tix-column-description small {
-	display: inline-block;
-	margin-top: 6px;
-	padding: 2px 9px;
-	background: var(--wcraj-gold-light);
-	color: #8a6a12;
-	border-radius: 999px;
-	font-size: 0.7rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
+.tix-js .tix-order-summary thead th,
+.tix-js .tix-ticket-form thead th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--indigo);
+  background: var(--surface);
 }
 
-.tix-js .tix-order-summary .tix-column-per-ticket,
-.tix-js .tix-order-summary .tix-column-quantity {
-	text-align: center;
-	color: var(--wcraj-muted);
-}
-
-.tix-js .tix-order-summary .tix-column-price {
-	text-align: center;
-	font-weight: 700;
-	color: var(--wcraj-pink-dark);
-	white-space: nowrap;
+.tix-js .tix-order-summary tbody tr,
+.tix-js .tix-ticket-form tbody tr {
+  border-bottom: 1px solid var(--border);
 }
 
 .tix-js .tix-order-summary .tix-row-total td {
-	background: var(--wcraj-gold-light);
-	border-top: 2px solid var(--wcraj-gold);
-	font-size: 0.88rem;
-	color: var(--wcraj-ink);
-		padding: 16px 18px;
-	}
-
-	.tix-js .tix-order-summary .tix-row-total strong {
-		color: var(--wcraj-maroon);
-		font-size: 1.2rem;
+  border-top: 2px solid var(--border);
+  font-weight: 600;
 }
 
-/* ---------- Attendee registration form ---------- */
-.tix-js .tix-attendee-form {
-	width: 100%;
-	border-collapse: collapse;
-	margin-bottom: 8px;
+.tix-js .tix-order-summary .tix-row-total strong,
+.tix-js .tix-ticket-form strong {
+  color: var(--indigo);
 }
 
-.tix-js .tix-attendee-form th[colspan="2"] {
-	text-align: left;
-	background: var(--wcraj-maroon);
-	color: #fff;
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: 1.02rem;
-	padding: 14px 18px;
-	border-radius: var(--wcraj-radius) var(--wcraj-radius) 0 0;
+.tix-js .tix-order-summary .tix-column-per-ticket,
+.tix-js .tix-order-summary .tix-column-quantity,
+.tix-js .tix-order-summary .tix-column-price,
+.tix-js .tix-ticket-form td {
+  text-align: right;
 }
 
-.tix-js .tix-attendee-form tbody tr:not(:has(th[colspan="2"])) {
-	background: var(--wcraj-cream);
-	border-left: 1px solid var(--wcraj-border);
-	border-right: 1px solid var(--wcraj-border);
+.tix-js .tix-order-summary .tix-column-description strong {
+  color: var(--indigo);
+  display: block;
+  margin-bottom: 4px;
 }
 
-.tix-js .tix-attendee-form tr:last-child td,
-.tix-js .tix-attendee-form tr:last-child th {
-	border-bottom: 1px solid var(--wcraj-border);
+/* Attendee form styling */
+.tix-js .tix-attendee-form tbody {
+  display: grid;
+  gap: 18px;
 }
 
-.tix-js .tix-attendee-form tr:last-child td:first-child,
-.tix-js .tix-attendee-form tr:last-child td:only-child {
-	border-radius: 0 0 0 var(--wcraj-radius);
+.tix-js .tix-attendee-form tr {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr);
+  gap: 18px;
+  align-items: start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 20px;
 }
 
-.tix-js .tix-attendee-form tr:last-child td:last-child {
-	border-radius: 0 0 var(--wcraj-radius) 0;
+.tix-js .tix-attendee-form tr th[colspan="2"],
+.tix-js .tix-attendee-form tr td[colspan="2"] {
+  grid-column: 1 / -1;
+  padding: 0;
+  font-weight: 700;
+}
+
+.tix-js .tix-attendee-form th:not([colspan]) {
+  font-weight: 700;
+  color: var(--indigo);
 }
 
 .tix-js .tix-attendee-form td,
-.tix-js .tix-attendee-form th:not([colspan]) {
-	padding: 14px 18px;
-	vertical-align: top;
-	border: none;
+.tix-js .tix-attendee-form th {
+  margin: 0;
 }
 
-.tix-js .tix-attendee-form .tix-left {
-	width: 34%;
-	font-weight: 600;
-	color: var(--wcraj-ink);
-		font-size: 0.95rem;
-		line-height: 1.65;
-		padding-right: 10px;
-	}
-
-	.tix-js .tix-attendee-form .tix-left a {
-		color: var(--wcraj-pink);
-		text-decoration: underline;
-	}
-
-	.tix-js .tix-attendee-form .tix-right {
-		width: 66%;
-	}
-
-	.tix-js .tix-attendee-form td,
-	.tix-js .tix-attendee-form th:not([colspan]) {
-		padding: 18px 20px;
-	margin-left: 2px;
-}
-
-/* Text / email / url inputs */
 .tix-js .tix-attendee-form input[type="text"],
 .tix-js .tix-attendee-form input[type="email"],
 .tix-js .tix-attendee-form input[type="url"],
-.tix-js .tix-attendee-form input[type="tel"] {
-	width: 100%;
-	max-width: 420px;
-	padding: 10px 14px;
-	font-size: 0.95rem;
-	color: var(--wcraj-ink);
-	background: #fff;
-	border: 1.5px solid var(--wcraj-border);
-	border-radius: 8px;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.tix-js .tix-attendee-form input[type="tel"],
+.tix-js .tix-attendee-form select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--charcoal);
 }
 
-.tix-js .tix-attendee-form input[type="text"]:focus,
-.tix-js .tix-attendee-form input[type="email"]:focus,
-.tix-js .tix-attendee-form input[type="url"]:focus,
-.tix-js .tix-attendee-form input[type="tel"]:focus {
-	outline: none;
-	border-color: var(--wcraj-pink);
-	box-shadow: 0 0 0 3px rgba(185, 28, 76, 0.12);
-}
-
-.tix-js .tix-attendee-form input:required {
-	background-image: none;
+.tix-js .tix-attendee-form input:focus,
+.tix-js .tix-attendee-form select:focus {
+  outline: none;
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 4px rgba(195, 58, 25, 0.12);
 }
 
 .tix-js .tix-attendee-form small.message {
-	display: block;
-	margin-top: 6px;
-	font-size: 0.8rem;
-	color: var(--wcraj-muted);
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
 }
 
-/* Radio / checkbox groups (Yes/No questions) */
 .tix-js .tix-attendee-form fieldset {
-	border: none;
-	margin: 0;
-	padding: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .tix-js .tix-attendee-form fieldset label {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	margin: 4px 22px 4px 0;
-	font-size: 0.94rem;
-	font-weight: 500;
-	color: var(--wcraj-ink);
-	cursor: pointer;
-}
-
-.tix-js .tix-attendee-form fieldset label br {
-	display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.96rem;
+  color: var(--charcoal);
 }
 
 .tix-js .tix-attendee-form input[type="radio"],
 .tix-js .tix-attendee-form input[type="checkbox"] {
-	width: 17px;
-	height: 17px;
-	accent-color: var(--wcraj-pink);
-	cursor: pointer;
+  accent-color: var(--terracotta);
 }
 
-/* Health advisory note block */
-.tix-js .tix-row-health-advisory td {
-	background: var(--wcraj-gold-light);
-	border-radius: var(--wcraj-radius);
-	border: 1px solid var(--wcraj-gold);
+/* Payment method controls */
+.tix-js .tix-payment-method {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.tix-js .tix-row-health-advisory p {
-	margin: 0 0 8px;
-	font-size: 0.88rem;
-	line-height: 1.6;
-	color: #6b5518;
+.tix-js .tix-payment-tab {
+  flex: 1 1 auto;
+  min-width: 160px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--white);
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.tix-js .tix-row-health-advisory p:last-child {
-	margin-bottom: 0;
+.tix-js .tix-payment-tab:hover,
+.tix-js .tix-payment-tab:focus-visible {
+  border-color: rgba(13, 35, 67, 0.18);
 }
 
-/* Honeypot / anti-spam fields injected by CampTix — keep them fully hidden */
-.tix-js label[for="camptix-fsp-attendee-info-tos-required"],
-.tix-js label[for="camptix-fsp-attendee-info-dob-required"] {
-	display: none !important;
+.tix-js .tix-tab-selected {
+  background: var(--terracotta);
+  color: var(--white);
+  border-color: transparent;
 }
 
-/* ---------- Final submit ---------- */
+.tix-js .tix-payment-method-container {
+  margin-bottom: 22px;
+}
+
 .tix-js .tix-submit {
-	margin-top: 28px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  align-items: center;
+  margin-top: 14px;
 }
 
-.tix-js .tix-checkout-button {
-	float: right;
-	cursor: pointer;
-	background: linear-gradient(135deg, var(--wcraj-pink) 0%, var(--wcraj-maroon) 100%);
-	color: #fff !important;
-	border: none;
-	border-radius: 999px;
-	padding: 15px 38px;
-	font-size: 1.05rem;
-	font-weight: 700;
-	letter-spacing: 0.02em;
-	box-shadow: 0 4px 14px rgba(122, 19, 50, 0.25);
-	transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+.tix-js .tix-checkout-button,
+.tix-js .tix-submit input[type="submit"] {
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: none;
+  background: var(--terracotta);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.tix-js .tix-checkout-button:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 8px 20px rgba(122, 19, 50, 0.32);
-	filter: brightness(1.05);
+.tix-js .tix-checkout-button:hover,
+.tix-js .tix-submit input[type="submit"]:hover {
+  transform: translateY(-1px);
+  background: #a82f13;
 }
 
-.tix-js .tix-checkout-button:active {
-	transform: translateY(0);
-}
-
-/* ==========================================================================
-   Responsive — checkout & registration form
-   ========================================================================== */
-@media (max-width: 700px) {
-	.tix-js .tix-order-summary,
-	.tix-js .tix-order-summary thead,
-	.tix-js .tix-order-summary tbody,
-	.tix-js .tix-order-summary tr,
-	.tix-js .tix-order-summary td,
-	.tix-js .tix-order-summary th {
-		display: block;
-		width: 100%;
-	}
-
-	.tix-js .tix-order-summary thead {
-		display: none;
-	}
-
-	.tix-js .tix-order-summary .tix-column-per-ticket,
-	.tix-js .tix-order-summary .tix-column-quantity,
-	.tix-js .tix-order-summary .tix-column-price {
-		text-align: left;
-		display: flex;
-		justify-content: space-between;
-		padding-top: 4px;
-		padding-bottom: 4px;
-	}
-
-	.tix-js .tix-order-summary .tix-column-per-ticket::before {
-		content: "Per Ticket";
-		font-weight: 700;
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-order-summary .tix-column-quantity::before {
-		content: "Quantity";
-		font-weight: 700;
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-order-summary .tix-column-price::before {
-		content: "Price";
-		font-weight: 700;
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		color: var(--wcraj-muted);
-	}
-
-	.tix-js .tix-order-summary .tix-row-total td:last-child {
-		text-align: left;
-	}
-
-	.tix-js .tix-attendee-form,
-	.tix-js .tix-attendee-form tbody,
-	.tix-js .tix-attendee-form tr,
-	.tix-js .tix-attendee-form td,
-	.tix-js .tix-attendee-form th {
-		display: block;
-		width: 100%;
-	}
-
-	.tix-js .tix-attendee-form .tix-left,
-	.tix-js .tix-attendee-form .tix-right {
-		width: 100%;
-	}
-
-	.tix-js .tix-attendee-form .tix-left {
-		padding-bottom: 6px;
-	}
-
-	.tix-js .tix-attendee-form .tix-right {
-		padding-top: 0;
-	}
-
-	.tix-js .tix-attendee-form input[type="text"],
-	.tix-js .tix-attendee-form input[type="email"],
-	.tix-js .tix-attendee-form input[type="url"] {
-		max-width: 100%;
-	}
-
-	.tix-js .tix-checkout-button {
-		float: none;
-		width: 100%;
-		text-align: center;
-	}
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Notices, Errors & Info messages
-   CampTix prints these via camptix_notices(), inside #tix, as:
-   <p class="tix-notice">…</p> / <p class="tix-error">…</p> / <p class="tix-info">…</p>
-   (sometimes wrapped in a #tix_notices container depending on version/theme)
-   ========================================================================== */
-
-.tix-js #tix_notices,
-.tix-js .tix-notices {
-	margin: 0 0 24px;
-}
-
-.tix-js p.tix-notice,
-.tix-js .tix-notice {
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
-	margin: 0 0 12px;
-	padding: 14px 18px;
-	background: var(--wcraj-gold-light);
-	border: 1px solid var(--wcraj-gold);
-	border-left: 4px solid var(--wcraj-gold);
-	border-radius: 10px;
-	color: #6b5518;
-	font-size: 0.94rem;
-	line-height: 1.55;
-}
-
-.tix-js p.tix-notice::before,
-.tix-js .tix-notice::before {
-	content: "✓";
-	flex-shrink: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: var(--wcraj-gold);
-	color: #fff;
-	font-size: 0.72rem;
-	font-weight: 700;
-	margin-top: 1px;
-}
-
-.tix-js p.tix-error,
-.tix-js .tix-error {
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
-	margin: 0 0 12px;
-	padding: 14px 18px;
-	background: #fbe9ec;
-	border: 1px solid #d94f65;
-	border-left: 4px solid var(--wcraj-pink);
-	border-radius: 10px;
-	color: var(--wcraj-pink-dark);
-	font-size: 0.94rem;
-	font-weight: 500;
-	line-height: 1.55;
-}
-
-.tix-js p.tix-error::before,
-.tix-js .tix-error::before {
-	content: "!";
-	flex-shrink: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: var(--wcraj-pink);
-	color: #fff;
-	font-size: 0.78rem;
-	font-weight: 700;
-	margin-top: 1px;
-}
-
-.tix-js p.tix-info,
-.tix-js .tix-info {
-	margin: 0 0 12px;
-	padding: 14px 18px;
-	background: #f1e8ec;
-	border: 1px solid var(--wcraj-border);
-	border-left: 4px solid var(--wcraj-maroon);
-	border-radius: 10px;
-	color: var(--wcraj-ink);
-	font-size: 0.9rem;
-	line-height: 1.55;
-}
-
-/* Fieldset-level errors CampTix adds when a required field is missing */
-.tix-js tr.tix-required-error td,
-.tix-js td.tix-error-highlight,
-.tix-js input.tix-error-highlight {
-	background: #fdf1f3;
-}
-
-.tix-js tr.tix-required-error input[type="text"],
-.tix-js tr.tix-required-error input[type="email"],
-.tix-js tr.tix-required-error input[type="url"] {
-	border-color: var(--wcraj-pink) !important;
-	box-shadow: 0 0 0 3px rgba(185, 28, 76, 0.12);
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Coupon field (on the ticket-selection form)
-   Rendered via the [camptix] shortcode as a "Have a coupon code?" row/link
-   ========================================================================== */
-
-.tix-js .tix-promo-toggle,
-.tix-js a.tix-coupon-toggle {
-	display: inline-block;
-	margin-bottom: 14px;
-	color: var(--wcraj-pink);
-	font-size: 0.9rem;
-	font-weight: 600;
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.tix-js .tix-promo,
-.tix-js .tix-coupon-form {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	align-items: center;
-	margin-bottom: 18px;
-	padding: 14px 16px;
-	background: var(--wcraj-cream);
-	border: 1px dashed var(--wcraj-gold);
-	border-radius: 10px;
-}
-
-.tix-js .tix-promo input[type="text"],
-.tix-js input[name="tix_coupon"] {
-	flex: 1 1 200px;
-	padding: 10px 14px;
-	font-size: 0.95rem;
-	border: 1.5px solid var(--wcraj-border);
-	border-radius: 8px;
-	background: #fff;
-}
-
-.tix-js .tix-promo input[type="text"]:focus {
-	outline: none;
-	border-color: var(--wcraj-pink);
-	box-shadow: 0 0 0 3px rgba(185, 28, 76, 0.12);
-}
-
-.tix-js .tix-promo input[type="submit"],
-.tix-js .tix-apply-coupon {
-	flex: 0 0 auto;
-	padding: 10px 22px;
-	background: var(--wcraj-maroon);
-	color: #fff;
-	border: none;
-	border-radius: 8px;
-	font-weight: 700;
-	font-size: 0.9rem;
-	cursor: pointer;
-	transition: background 0.18s ease;
-}
-
-.tix-js .tix-promo input[type="submit"]:hover,
-.tix-js .tix-apply-coupon:hover {
-	background: var(--wcraj-pink);
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Payment method selection (on checkout, if a paid
-   ticket is in the cart). CampTix renders each gateway as a radio/button
-   inside a "tix-payment-methods" fieldset.
-   ========================================================================== */
-
-.tix-js .tix-payment-methods,
-.tix-js fieldset.tix-payment-method-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 12px;
-	margin: 16px 0 28px;
-	border: none;
-	padding: 0;
-}
-
-.tix-js .tix-payment-methods label,
-.tix-js fieldset.tix-payment-method-list label {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	padding: 12px 20px;
-	background: var(--wcraj-cream);
-	border: 1.5px solid var(--wcraj-border);
-	border-radius: 10px;
-	font-weight: 600;
-	font-size: 0.94rem;
-	color: var(--wcraj-ink);
-	cursor: pointer;
-	transition: border-color 0.18s ease, background 0.18s ease;
-}
-
-.tix-js .tix-payment-methods input[type="radio"]:checked + label,
-.tix-js .tix-payment-methods label:has(input:checked),
-.tix-js fieldset.tix-payment-method-list label:has(input:checked) {
-	border-color: var(--wcraj-pink);
-	background: var(--wcraj-gold-light);
-}
-
-.tix-js .tix-payment-methods input[type="radio"],
-.tix-js fieldset.tix-payment-method-list input[type="radio"] {
-	accent-color: var(--wcraj-pink);
-	width: 17px;
-	height: 17px;
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Loading / processing state
-   CampTix's camptix.js toggles a "tix-loading" class on #tix during AJAX
-   submissions (quantity refresh, coupon apply, checkout submit).
-   ========================================================================== */
-
-.tix-js.tix-loading,
-.tix-js .tix-loading {
-	position: relative;
-	pointer-events: none;
-	opacity: 0.6;
-}
-
-.tix-js.tix-loading::after {
-	content: "";
-	position: fixed;
-	inset: 0;
-	background: rgba(253, 248, 241, 0.4);
-	z-index: 998;
-}
-
-.tix-js .tix-spinner,
-.tix-js.tix-loading .tix-submit::after {
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	margin-left: 10px;
-	border: 2.5px solid rgba(255, 255, 255, 0.4);
-	border-top-color: #fff;
-	border-radius: 50%;
-	animation: wcraj-spin 0.7s linear infinite;
-	vertical-align: middle;
-}
-
-@keyframes wcraj-spin {
-	to {
-		transform: rotate(360deg);
-	}
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Receipt / Successful purchase confirmation
-   Shown after a completed (or free/100%-discount) checkout — CampTix prints
-   a success notice (.tix-notice, styled above) followed by a receipt-style
-   summary table of the purchased ticket(s).
-   Note: exact markup can vary slightly by CampTix/theme version — these
-   selectors cover the common .tix-received-tickets / .tix-receipt patterns.
-   Send me the rendered HTML for this screen and I can tighten it further.
-   ========================================================================== */
-
-.tix-js .tix-receipt,
-.tix-js .tix-received-tickets-wrap {
-	margin-top: 24px;
-}
-
-.tix-js .tix-receipt h2,
-.tix-js .tix-received-tickets-wrap h2 {
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: clamp(1.2rem, 1.05rem + 0.75vw, 1.5rem);
-	color: var(--wcraj-maroon);
-	margin: 0 0 18px;
-	padding-bottom: 10px;
-	border-bottom: 2px solid var(--wcraj-gold);
-}
-
-.tix-js .tix_tickets_table.tix-received-tickets,
-.tix-js table.tix-receipt-table {
-	width: 100%;
-	border-collapse: collapse;
-	background: var(--wcraj-cream);
-	border: 1px solid var(--wcraj-border);
-	border-radius: var(--wcraj-radius);
-	overflow: hidden;
-	font-size: 0.95rem;
-}
-
-.tix-js .tix-received-tickets thead th,
-.tix-js .tix-receipt-table thead th {
-	text-align: left;
-	background: var(--wcraj-maroon);
-	color: #fff;
-	font-size: 0.74rem;
-	font-weight: 700;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	padding: 12px 18px;
-}
-
-.tix-js .tix-received-tickets tbody td,
-.tix-js .tix-receipt-table tbody td {
-	padding: 14px 18px;
-	border-top: 1px solid var(--wcraj-border);
-}
-
-.tix-js .tix-received-tickets tbody tr:first-child td,
-.tix-js .tix-receipt-table tbody tr:first-child td {
-	border-top: none;
-}
-
-.tix-js .tix-ticket-id,
-.tix-js .tix-attendee-edit-link,
-.tix-js a.tix-edit-attendee {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	color: var(--wcraj-pink);
-	font-weight: 600;
-	font-size: 0.88rem;
-	text-decoration: none;
-}
-
-.tix-js .tix-attendee-edit-link:hover,
-.tix-js a.tix-edit-attendee:hover {
-	text-decoration: underline;
-}
-
-/* Ticket / QR / badge preview block, if the theme renders one on receipt */
-.tix-js .tix-ticket-preview {
-	display: inline-flex;
-	flex-direction: column;
-	gap: 10px;
-	padding: 20px;
-	margin: 8px 0;
-	background: linear-gradient(135deg, var(--wcraj-cream) 0%, var(--wcraj-gold-light) 100%);
-	border: 1.5px dashed var(--wcraj-gold);
-	border-radius: 14px;
-}
-
-.tix-js .tix-ticket-preview .tix-ticket-preview-title {
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	color: var(--wcraj-maroon);
-	font-size: 1.1rem;
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Public Attendees List  [camptix_attendees]
-   Confirmed markup:
-   <div id="tix-attendees">
-     <ul class="tix-attendee-list tix-columns-3">
-       <li class="tix-attendee">
-         <span class="tix-avatar">…</span>
-         <span class="tix-name">
-           <span class="tix-first">First</span> <span class="tix-last">Last</span>
-         </span>
-         <span class="tix-url">…</span>
-         <span class="tix-twitter">…</span>
-       </li>
-     </ul>
-   </div>
-   ========================================================================== */
-
-#tix-attendees {
-	--wcraj-maroon: #7a1332;
-	--wcraj-pink: #b91c4c;
-	--wcraj-gold: #c9982f;
-	--wcraj-gold-light: #f4e6c8;
-	--wcraj-cream: #fdf8f1;
-	--wcraj-ink: #2b1a1f;
-	--wcraj-muted: #7a6a6d;
-	--wcraj-border: #ecd9c9;
-	--wcraj-font-body: var(--wp--preset--font-family--body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-	--wcraj-font-heading: var(--wp--preset--font-family--heading, var(--wcraj-font-body));
-	font-family: var(--wcraj-font-body);
-}
-
+/* Attendee grid */
 #tix-attendees .tix-attendee-list {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 18px;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-#tix-attendees .tix-attendee-list.tix-columns-1 { grid-template-columns: repeat(1, 1fr); }
-#tix-attendees .tix-attendee-list.tix-columns-2 { grid-template-columns: repeat(2, 1fr); }
-#tix-attendees .tix-attendee-list.tix-columns-3 { grid-template-columns: repeat(3, 1fr); }
-#tix-attendees .tix-attendee-list.tix-columns-4 { grid-template-columns: repeat(4, 1fr); }
-
-#tix-attendees .tix-attendee-list li,
-#tix-attendees .tix-attendee-list .tix-attendee {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 14px 16px;
-	background: var(--wcraj-cream);
-	border: 1px solid var(--wcraj-border);
-	border-radius: 12px;
-	transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#tix-attendees .tix-attendee-list li:hover,
-#tix-attendees .tix-attendee-list .tix-attendee:hover {
-	border-color: var(--wcraj-gold);
-	box-shadow: 0 4px 14px rgba(122, 19, 50, 0.08);
-	transform: translateY(-1px);
-}
-
-#tix-attendees .tix-avatar {
-	flex-shrink: 0;
-	display: block;
+#tix-attendees .tix-attendee-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
 }
 
 #tix-attendees .tix-avatar img {
-	width: 46px;
-	height: 46px;
-	border-radius: 50%;
-	object-fit: cover;
-	border: 2px solid var(--wcraj-gold-light);
-	display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 #tix-attendees .tix-name {
-	display: block;
-	font-family: var(--wcraj-font-heading);
-	font-weight: 700;
-	font-size: 0.96rem;
-	color: var(--wcraj-maroon);
-	line-height: 1.3;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--indigo);
 }
 
-#tix-attendees .tix-first,
-#tix-attendees .tix-last {
-	color: var(--wcraj-maroon);
+/* Responsive stack */
+@media (max-width: 780px) {
+  .tix-js {
+    padding: 0 18px 30px;
+  }
+
+  .tix-js .tix-attendee-form tr {
+    grid-template-columns: 1fr;
+  }
+
+  .tix-js .tix-payment-method {
+    flex-direction: column;
+  }
+
+  .tix-js .tix-submit {
+    justify-content: stretch;
+  }
+
+  .tix-js .tix-checkout-button,
+  .tix-js .tix-submit input[type="submit"] {
+    width: 100%;
+  }
 }
 
-#tix-attendees .tix-url,
-#tix-attendees .tix-twitter {
-	display: block;
-	font-size: 0.82rem;
-	color: var(--wcraj-muted);
-	margin-top: 2px;
-}
+@media (max-width: 540px) {
+  .tix-js {
+    padding: 0 14px 24px;
+  }
 
-#tix-attendees .tix-url a,
-#tix-attendees .tix-twitter a {
-	color: var(--wcraj-pink);
-	text-decoration: none;
-}
+  .tix-js .tix-column-quantity {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-#tix-attendees .tix-url a:hover,
-#tix-attendees .tix-twitter a:hover {
-	text-decoration: underline;
-}
+  .tix-js .tix-ticket-title {
+    font-size: 1.15rem;
+  }
 
-#tix-attendees .tix-twitter::before {
-	content: "@";
-}
-
-@media (max-width: 900px) {
-	#tix-attendees .tix-attendee-list,
-	#tix-attendees .tix-attendee-list.tix-columns-3,
-	#tix-attendees .tix-attendee-list.tix-columns-4 {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media (max-width: 560px) {
-	#tix-attendees .tix-attendee-list,
-	#tix-attendees .tix-attendee-list.tix-columns-2,
-	#tix-attendees .tix-attendee-list.tix-columns-3,
-	#tix-attendees .tix-attendee-list.tix-columns-4 {
-		grid-template-columns: 1fr;
-	}
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — "Access existing tickets" / login-to-edit form
-   Shown by the [camptix_tickets_for] / private-content login shortcode:
-   a small email lookup form outside the main #tix wrapper in some setups.
-   ========================================================================== */
-
-.tix-access-tickets-form,
-.tix-js .tix-access-form {
-	max-width: 420px;
-	margin: 20px 0;
-	padding: 22px;
-	background: var(--wcraj-cream, #fdf8f1);
-	border: 1px solid var(--wcraj-border, #ecd9c9);
-	border-radius: 14px;
-}
-
-.tix-access-tickets-form input[type="email"],
-.tix-access-tickets-form input[type="text"],
-.tix-js .tix-access-form input[type="email"],
-.tix-js .tix-access-form input[type="text"] {
-	width: 100%;
-	padding: 10px 14px;
-	margin-bottom: 12px;
-	border: 1.5px solid var(--wcraj-border, #ecd9c9);
-	border-radius: 8px;
-	font-size: 0.95rem;
-}
-
-.tix-access-tickets-form input[type="submit"],
-.tix-js .tix-access-form input[type="submit"] {
-	background: linear-gradient(135deg, var(--wcraj-pink, #b91c4c) 0%, var(--wcraj-maroon, #7a1332) 100%);
-	color: #fff;
-	border: none;
-	border-radius: 999px;
-	padding: 11px 28px;
-	font-weight: 700;
-	cursor: pointer;
-}
-
-/* ==========================================================================
-   WordCamp Rajasthan — Fine-grained mobile responsiveness
-   Layered on top of the 700px stacking breakpoint above: tightens spacing
-   and enforces comfortable touch targets on small phones (WCRAJ visitors
-   are heavily mobile — most ticket signups happen on a phone).
-   ========================================================================== */
-
-/* Tablet: tighten the card padding slightly before the full stack kicks in */
-@media (max-width: 900px) and (min-width: 701px) {
-	.tix-js .tix_tickets_table tbody tr td,
-	.tix-js .tix_tickets_table tbody tr th {
-		padding: 16px;
-	}
-
-	.tix-js .tix-ticket-excerpt {
-		max-width: 38ch;
-	}
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-	.tix-js {
-		font-size: 15px;
-	}
-
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		padding: 16px;
-	}
-
-	.tix-js .tix-ticket-title {
-		font-size: 1rem;
-	}
-
-	.tix-js .tix-ticket-excerpt {
-		max-width: 100%;
-		font-size: 0.86rem;
-	}
-
-	.tix-js h2,
-	.tix-js #tix-registration-information,
-	.tix-js .tix-receipt h2,
-	.tix-js .tix-received-tickets-wrap h2 {
-		margin-top: 28px;
-	}
-
-	.tix-js .tix-attendee-form th[colspan="2"] {
-		font-size: 0.94rem;
-		padding: 12px 16px;
-	}
-
-	.tix-js .tix-attendee-form .tix-left {
-		font-size: 0.88rem;
-	}
-
-	.tix-js .tix-payment-methods,
-	.tix-js fieldset.tix-payment-method-list {
-		flex-direction: column;
-	}
-
-	.tix-js .tix-payment-methods label,
-	.tix-js fieldset.tix-payment-method-list label {
-		width: 100%;
-	}
-
-	#tix-attendees .tix-attendee-list {
-		gap: 12px;
-	}
-
-	#tix-attendees .tix-attendee-list li,
-	#tix-attendees .tix-attendee-list .tix-attendee {
-		padding: 12px;
-	}
-}
-
-/* Very small / older phones (SE-class, ~360px and under) */
-@media (max-width: 360px) {
-	.tix-js .tix-column-quantity select {
-		padding: 8px 30px 8px 10px;
-	}
-
-	.tix-js input[type="submit"],
-	.tix-js .tix-checkout-button {
-		padding: 14px 20px;
-		font-size: 0.95rem;
-	}
-
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon) {
-		padding: 14px;
-	}
-}
-
-/* Comfortable touch targets (WCAG 2.5.5-style ≥44px) on any touch device */
-@media (pointer: coarse) {
-	.tix-js .tix-column-quantity select,
-	.tix-js .tix-attendee-form input[type="text"],
-	.tix-js .tix-attendee-form input[type="email"],
-	.tix-js .tix-attendee-form input[type="url"],
-	.tix-js .tix-promo input[type="text"],
-	.tix-js input[type="submit"],
-	.tix-js .tix-checkout-button,
-	.tix-js .tix-apply-coupon {
-		min-height: 44px;
-	}
-
-	.tix-js .tix-attendee-form input[type="radio"],
-	.tix-js .tix-attendee-form input[type="checkbox"],
-	.tix-js .tix-payment-methods input[type="radio"] {
-		width: 20px;
-		height: 20px;
-	}
-
-	.tix-js .tix-attendee-form fieldset label {
-		padding: 6px 0;
-	}
-}
-
-/* Respect people who've asked for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-	.tix-js .tix_tickets_table tbody tr:not(.tix-row-coupon),
-	.tix-js input[type="submit"],
-	.tix-js .tix-checkout-button,
-	#tix-attendees .tix-attendee-list li,
-	#tix-attendees .tix-attendee-list .tix-attendee {
-		transition: none;
-	}
-
-	.tix-js .tix-spinner,
-	.tix-js.tix-loading .tix-submit::after {
-		animation-duration: 1.4s;
-	}
-}
-
-/* Never let long ticket names / emails force horizontal scroll on mobile */
-.tix-js,
-.tix-js * {
-	word-break: break-word;
-	overflow-wrap: anywhere;
-}
-
-.tix-js table {
-	max-width: 100%;
+  .tix-js .tix-column-quantity select,
+  .tix-js .tix-attendee-form input[type="text"],
+  .tix-js .tix-attendee-form input[type="email"],
+  .tix-js .tix-attendee-form input[type="url"],
+  .tix-js .tix-attendee-form input[type="tel"] {
+    width: 100%;
+  }
 }
